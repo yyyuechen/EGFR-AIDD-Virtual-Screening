@@ -5,7 +5,7 @@ ChEMBL data curation, molecular representation benchmarking, scaffold-aware
 validation, applicability-domain analysis, virtual screening, external
 robustness testing, ADMET filtering, and AutoDock Vina docking.
 
-![workflow](results/figures/final_workflow.png)
+![workflow](results/figures/workflow.png)
 
 ![key results](results/figures/final_key_results.png)
 
