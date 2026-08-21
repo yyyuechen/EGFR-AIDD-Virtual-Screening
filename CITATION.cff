@@ -1,0 +1,6 @@
+cff-version: 1.2.0
+message: "If you use this repository in research, please cite it appropriately."
+title: "EGFR AI-Driven Drug Discovery Pipeline"
+authors:
+  - name: "EGFR AIDD Project Contributors"
+date-released: "2026-08-21"

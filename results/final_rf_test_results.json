@@ -1,0 +1,260 @@
+{
+  "milestone": "final locked RF test confirmation",
+  "test_set_used": true,
+  "split": {
+    "type": "standard_murcko_scaffold",
+    "train_frac_target": 0.8,
+    "val_frac_target": 0.1,
+    "test_frac_target": 0.1,
+    "seed": 42,
+    "target_molecule_counts": {
+      "train": 8129,
+      "val": 1016,
+      "test": 1016
+    },
+    "actual_molecule_counts": {
+      "train": 8128,
+      "val": 1015,
+      "test": 1018
+    },
+    "n_train": 8128,
+    "n_validation": 1015,
+    "n_test": 1018
+  },
+  "locked_configuration": {
+    "tuning_complete": true,
+    "note": "Locked final Morgan-RF configuration. The standard scaffold test set was not used for model selection during the controlled hyperparameter study.",
+    "morgan": {
+      "type": "Morgan",
+      "radius": 2,
+      "nBits": 2048
+    },
+    "random_forest": {
+      "n_estimators": 300,
+      "random_state": 42,
+      "n_jobs": -1,
+      "min_samples_leaf": 1,
+      "max_features": 0.2,
+      "max_depth": null,
+      "baseline_max_features": 1.0
+    },
+    "split": {
+      "type": "standard_murcko_scaffold",
+      "train_frac_target": 0.8,
+      "val_frac_target": 0.1,
+      "test_frac_target": 0.1,
+      "seed": 42,
+      "target_molecule_counts": {
+        "train": 8129,
+        "val": 1016,
+        "test": 1016
+      },
+      "actual_molecule_counts": {
+        "train": 8128,
+        "val": 1015,
+        "test": 1018
+      },
+      "n_train": 8128,
+      "n_validation": 1015,
+      "n_test": 1018
+    },
+    "primary_selection_metric": "validation Spearman",
+    "secondary_selection_metrics": [
+      "validation R2",
+      "validation RMSE",
+      "validation MAE"
+    ],
+    "versions": {
+      "python": "3.10.20",
+      "rdkit": "2026.03.5",
+      "numpy": "2.2.6",
+      "pandas": "2.3.3",
+      "scipy": "1.15.2",
+      "scikit_learn": "1.7.2",
+      "xgboost": "3.2.0",
+      "matplotlib": "3.10.9"
+    }
+  },
+  "activity_definition": "active = pIC50 >= 7.0",
+  "test_n": 1018,
+  "test_active_fraction": 0.5353634577603144,
+  "benchmark_note": "ROC-AUC / PR-AUC are reported on the standard-scaffold test split and must not be mixed with the M9 retrospective screening benchmark, which uses a different external screening set.",
+  "metric_interpretation": {
+    "MAE": "lower is better",
+    "RMSE": "lower is better",
+    "R2": "higher is better",
+    "Spearman": "higher is better",
+    "ROC_AUC": "higher is better",
+    "PR_AUC": "higher is better",
+    "delta_direction": "tuned minus baseline"
+  },
+  "baseline": {
+    "MAE": 0.6494016365330101,
+    "RMSE": 0.88319335258866,
+    "R2": 0.5727933418284104,
+    "Spearman": 0.7586928914812212,
+    "ROC_AUC": 0.8795236340361154,
+    "PR_AUC": 0.8853276422717296
+  },
+  "tuned": {
+    "MAE": 0.6492266285422527,
+    "RMSE": 0.8633158008940205,
+    "R2": 0.5918067594375412,
+    "Spearman": 0.7662994411031386,
+    "ROC_AUC": 0.8817871482048996,
+    "PR_AUC": 0.8906010311718605
+  },
+  "delta_tuned_minus_baseline": {
+    "MAE": -0.00017500799075742535,
+    "RMSE": -0.01987755169463956,
+    "R2": 0.01901341760913089,
+    "Spearman": 0.0076065496219174245,
+    "ROC_AUC": 0.00226351416878412,
+    "PR_AUC": 0.00527338890013096
+  },
+  "bootstrap": {
+    "method": "paired resampling of test molecules with replacement",
+    "n_resamples": 1000,
+    "seed": 42,
+    "metrics": {
+      "MAE": {
+        "baseline": {
+          "mean": 0.6487651722490905,
+          "std": 0.018350382844157395,
+          "ci95_low": 0.6127116521148452,
+          "ci95_high": 0.6846714000658448
+        },
+        "tuned": {
+          "mean": 0.6485807934498634,
+          "std": 0.01751038399452638,
+          "ci95_low": 0.6141778382548639,
+          "ci95_high": 0.6820297999216542
+        },
+        "n_valid_resamples": 1000
+      },
+      "RMSE": {
+        "baseline": {
+          "mean": 0.882207014065765,
+          "std": 0.026165206784454945,
+          "ci95_low": 0.8281768050513864,
+          "ci95_high": 0.9353487412107564
+        },
+        "tuned": {
+          "mean": 0.8623123760420532,
+          "std": 0.023746264144038905,
+          "ci95_low": 0.8147278691927548,
+          "ci95_high": 0.9079120929036099
+        },
+        "n_valid_resamples": 1000
+      },
+      "R2": {
+        "baseline": {
+          "mean": 0.572973252276714,
+          "std": 0.024400763383165276,
+          "ci95_low": 0.5212262219729625,
+          "ci95_high": 0.6189643608462747
+        },
+        "tuned": {
+          "mean": 0.592058492044348,
+          "std": 0.021619047987046468,
+          "ci95_low": 0.5493385092558082,
+          "ci95_high": 0.6335177543903703
+        },
+        "n_valid_resamples": 1000
+      },
+      "Spearman": {
+        "baseline": {
+          "mean": 0.7588542105407983,
+          "std": 0.01622401719628407,
+          "ci95_low": 0.7258196730608365,
+          "ci95_high": 0.788279209779059
+        },
+        "tuned": {
+          "mean": 0.7664733376709989,
+          "std": 0.015503513090726851,
+          "ci95_low": 0.7344387956887095,
+          "ci95_high": 0.7955776375010783
+        },
+        "n_valid_resamples": 1000
+      },
+      "ROC_AUC": {
+        "baseline": {
+          "mean": 0.879971462477218,
+          "std": 0.010423365564090138,
+          "ci95_low": 0.8586746872682453,
+          "ci95_high": 0.9004469981712415
+        },
+        "tuned": {
+          "mean": 0.8822314825050592,
+          "std": 0.010119192034295394,
+          "ci95_low": 0.8617800010979358,
+          "ci95_high": 0.9015851630345794
+        },
+        "n_valid_resamples": 1000
+      },
+      "PR_AUC": {
+        "baseline": {
+          "mean": 0.8860402658410305,
+          "std": 0.012839968573045663,
+          "ci95_low": 0.8610663129958306,
+          "ci95_high": 0.9089710938065872
+        },
+        "tuned": {
+          "mean": 0.891263021741196,
+          "std": 0.011791415308609086,
+          "ci95_low": 0.866551160749966,
+          "ci95_high": 0.9123196092929
+        },
+        "n_valid_resamples": 1000
+      }
+    },
+    "delta_tuned_minus_baseline_ci95": {
+      "MAE": {
+        "mean": -0.0001843787992271574,
+        "std": 0.004520173080199475,
+        "ci95_low": -0.009075273952953782,
+        "ci95_high": 0.008358266140500193
+      },
+      "RMSE": {
+        "mean": -0.019894638023711813,
+        "std": 0.006066578217621509,
+        "ci95_low": -0.03249954822260269,
+        "ci95_high": -0.007943757550093434
+      },
+      "R2": {
+        "mean": 0.01908523976763395,
+        "std": 0.006033138565681504,
+        "ci95_low": 0.007482104096635039,
+        "ci95_high": 0.03163373031227796
+      },
+      "Spearman": {
+        "mean": 0.007619127130200642,
+        "std": 0.0032528923655484833,
+        "ci95_low": 0.0008849073656280349,
+        "ci95_high": 0.013824352166927286
+      },
+      "ROC_AUC": {
+        "mean": 0.0022600200278412707,
+        "std": 0.002317559365424356,
+        "ci95_low": -0.0023347251827335325,
+        "ci95_high": 0.006747156869592771
+      },
+      "PR_AUC": {
+        "mean": 0.00522275590016552,
+        "std": 0.0027330052551050037,
+        "ci95_low": -0.00011584985708673334,
+        "ci95_high": 0.010852359909992162
+      }
+    }
+  },
+  "versions": {
+    "python": "3.10.20",
+    "rdkit": "2026.03.5",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scipy": "1.15.2",
+    "scikit_learn": "1.7.2",
+    "xgboost": "3.2.0",
+    "matplotlib": "3.10.9"
+  }
+}

@@ -1,0 +1,239 @@
+{
+  "milestone": "radius tuning study",
+  "validation_only": true,
+  "test_set_used": false,
+  "fingerprint": {
+    "type": "Morgan",
+    "n_bits": 2048,
+    "radii": [
+      1,
+      2,
+      3
+    ]
+  },
+  "split": {
+    "type": "standard_murcko_scaffold",
+    "train_frac_target": 0.8,
+    "val_frac_target": 0.1,
+    "test_frac_target": 0.1,
+    "seed": 42,
+    "target_molecule_counts": {
+      "train": 8129,
+      "val": 1016,
+      "test": 1016
+    },
+    "actual_molecule_counts": {
+      "train": 8128,
+      "val": 1015,
+      "test": 1018
+    },
+    "n_train": 8128,
+    "n_validation": 1015,
+    "n_test": 1018
+  },
+  "rf_params": {
+    "bootstrap": true,
+    "ccp_alpha": 0.0,
+    "criterion": "squared_error",
+    "max_depth": null,
+    "max_features": 1.0,
+    "max_leaf_nodes": null,
+    "max_samples": null,
+    "min_impurity_decrease": 0.0,
+    "min_samples_leaf": 1,
+    "min_samples_split": 2,
+    "min_weight_fraction_leaf": 0.0,
+    "monotonic_cst": null,
+    "n_estimators": 300,
+    "n_jobs": -1,
+    "oob_score": false,
+    "random_state": 42,
+    "verbose": 0,
+    "warm_start": false
+  },
+  "primary_metric": "validation Spearman",
+  "secondary_metrics": [
+    "validation RMSE",
+    "validation MAE",
+    "validation R2"
+  ],
+  "versions": {
+    "python": "3.10.20",
+    "rdkit": "2026.03.5",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scipy": "1.15.2",
+    "scikit_learn": "1.7.2",
+    "xgboost": "3.2.0",
+    "matplotlib": "3.10.9"
+  },
+  "results": [
+    {
+      "radius": 1,
+      "MAE": 0.5834481731272202,
+      "RMSE": 0.7707917864554568,
+      "R2": 0.6036136857096663,
+      "Spearman": 0.776037589969322,
+      "mean_on_bits": 36.378936767578125,
+      "median_on_bits": 37.0,
+      "fingerprint_density": 0.017763152718544006,
+      "mean_max_train_tanimoto": 0.800752217762441,
+      "median_max_train_tanimoto": 0.8235294117647058,
+      "min_max_train_tanimoto": 0.2653061224489796,
+      "max_max_train_tanimoto": 1.0
+    },
+    {
+      "radius": 2,
+      "MAE": 0.5946642853898787,
+      "RMSE": 0.7785210462517118,
+      "R2": 0.5956241504387505,
+      "Spearman": 0.7689442118822258,
+      "mean_on_bits": 62.18528366088867,
+      "median_on_bits": 64.0,
+      "fingerprint_density": 0.030363908037543297,
+      "mean_max_train_tanimoto": 0.7198310644854221,
+      "median_max_train_tanimoto": 0.75,
+      "min_max_train_tanimoto": 0.16455696202531644,
+      "max_max_train_tanimoto": 1.0
+    },
+    {
+      "radius": 3,
+      "MAE": 0.5874374519239738,
+      "RMSE": 0.7722062324833107,
+      "R2": 0.602157568804177,
+      "Spearman": 0.7731113883143037,
+      "mean_on_bits": 86.03026580810547,
+      "median_on_bits": 88.0,
+      "fingerprint_density": 0.042006965726614,
+      "mean_max_train_tanimoto": 0.6653153090390872,
+      "median_max_train_tanimoto": 0.7,
+      "min_max_train_tanimoto": 0.12121212121212122,
+      "max_max_train_tanimoto": 1.0
+    }
+  ],
+  "detail": {
+    "1": {
+      "metrics": {
+        "MAE": 0.5834481731272202,
+        "RMSE": 0.7707917864554568,
+        "R2": 0.6036136857096663,
+        "Pearson_r": 0.7769318921012855,
+        "Spearman_rho": 0.776037589969322
+      },
+      "spearman_validation": 0.776037589969322,
+      "fingerprint_stats": {
+        "mean_on_bits": 36.378936767578125,
+        "median_on_bits": 37.0,
+        "density": 0.017763152718544006
+      },
+      "validation_max_train_tanimoto": {
+        "mean": 0.800752217762441,
+        "median": 0.8235294117647058,
+        "min": 0.2653061224489796,
+        "max": 1.0
+      },
+      "rf_params": {
+        "bootstrap": true,
+        "ccp_alpha": 0.0,
+        "criterion": "squared_error",
+        "max_depth": null,
+        "max_features": 1.0,
+        "max_leaf_nodes": null,
+        "max_samples": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "n_estimators": 300,
+        "n_jobs": -1,
+        "oob_score": false,
+        "random_state": 42,
+        "verbose": 0,
+        "warm_start": false
+      }
+    },
+    "2": {
+      "metrics": {
+        "MAE": 0.5946642853898787,
+        "RMSE": 0.7785210462517118,
+        "R2": 0.5956241504387505,
+        "Pearson_r": 0.7718798977731479,
+        "Spearman_rho": 0.7689442118822258
+      },
+      "spearman_validation": 0.7689442118822258,
+      "fingerprint_stats": {
+        "mean_on_bits": 62.18528366088867,
+        "median_on_bits": 64.0,
+        "density": 0.030363908037543297
+      },
+      "validation_max_train_tanimoto": {
+        "mean": 0.7198310644854221,
+        "median": 0.75,
+        "min": 0.16455696202531644,
+        "max": 1.0
+      },
+      "rf_params": {
+        "bootstrap": true,
+        "ccp_alpha": 0.0,
+        "criterion": "squared_error",
+        "max_depth": null,
+        "max_features": 1.0,
+        "max_leaf_nodes": null,
+        "max_samples": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "n_estimators": 300,
+        "n_jobs": -1,
+        "oob_score": false,
+        "random_state": 42,
+        "verbose": 0,
+        "warm_start": false
+      }
+    },
+    "3": {
+      "metrics": {
+        "MAE": 0.5874374519239738,
+        "RMSE": 0.7722062324833107,
+        "R2": 0.602157568804177,
+        "Pearson_r": 0.7761196879893171,
+        "Spearman_rho": 0.7731113883143037
+      },
+      "spearman_validation": 0.7731113883143037,
+      "fingerprint_stats": {
+        "mean_on_bits": 86.03026580810547,
+        "median_on_bits": 88.0,
+        "density": 0.042006965726614
+      },
+      "validation_max_train_tanimoto": {
+        "mean": 0.6653153090390872,
+        "median": 0.7,
+        "min": 0.12121212121212122,
+        "max": 1.0
+      },
+      "rf_params": {
+        "bootstrap": true,
+        "ccp_alpha": 0.0,
+        "criterion": "squared_error",
+        "max_depth": null,
+        "max_features": 1.0,
+        "max_leaf_nodes": null,
+        "max_samples": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "n_estimators": 300,
+        "n_jobs": -1,
+        "oob_score": false,
+        "random_state": 42,
+        "verbose": 0,
+        "warm_start": false
+      }
+    }
+  }
+}

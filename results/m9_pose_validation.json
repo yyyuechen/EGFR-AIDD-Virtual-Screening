@@ -1,0 +1,66 @@
+{
+  "milestone": "M9 P0-2 docking pose validation",
+  "receptor_pdb": "data/docking/1M17.pdb",
+  "docked_pdbqt": "results/m7_docking_out/CHEMBL553_out.pdbqt",
+  "crystal_ligand": "AQ4 (erlotinib)",
+  "n_models": 9,
+  "n_models_rmsd_below_2A": 6,
+  "best_affinity_model": {
+    "model": 1,
+    "affinity_kcal_mol": -7.014,
+    "rmsd_to_crystal_A": 2.494
+  },
+  "best_rmsd_model": {
+    "model": 6,
+    "affinity_kcal_mol": -6.783,
+    "rmsd_to_crystal_A": 1.238
+  },
+  "results": [
+    {
+      "model": 1,
+      "affinity_kcal_mol": -7.014,
+      "rmsd_to_crystal_A": 2.494
+    },
+    {
+      "model": 2,
+      "affinity_kcal_mol": -6.868,
+      "rmsd_to_crystal_A": 1.435
+    },
+    {
+      "model": 3,
+      "affinity_kcal_mol": -6.818,
+      "rmsd_to_crystal_A": 2.559
+    },
+    {
+      "model": 4,
+      "affinity_kcal_mol": -6.809,
+      "rmsd_to_crystal_A": 1.588
+    },
+    {
+      "model": 5,
+      "affinity_kcal_mol": -6.792,
+      "rmsd_to_crystal_A": 1.355
+    },
+    {
+      "model": 6,
+      "affinity_kcal_mol": -6.783,
+      "rmsd_to_crystal_A": 1.238
+    },
+    {
+      "model": 7,
+      "affinity_kcal_mol": -6.778,
+      "rmsd_to_crystal_A": 1.269
+    },
+    {
+      "model": 8,
+      "affinity_kcal_mol": -6.581,
+      "rmsd_to_crystal_A": 2.414
+    },
+    {
+      "model": 9,
+      "affinity_kcal_mol": -6.483,
+      "rmsd_to_crystal_A": 1.727
+    }
+  ],
+  "interpretation": "Best-scoring pose may not be the most native-like; a standard pose validation reports the best RMSD among near-top modes."
+}

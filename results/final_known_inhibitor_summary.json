@@ -1,0 +1,251 @@
+{
+  "milestone": "final known-inhibitor biological sanity check",
+  "test_set_used": false,
+  "locked_model": {
+    "morgan": {
+      "radius": 2,
+      "nBits": 2048
+    },
+    "random_forest": {
+      "n_estimators": 300,
+      "random_state": 42,
+      "n_jobs": -1,
+      "min_samples_leaf": 1,
+      "max_features": 0.2,
+      "max_depth": null
+    },
+    "baseline_max_features": 1.0
+  },
+  "split": {
+    "type": "standard_murcko_scaffold",
+    "train_frac_target": 0.8,
+    "val_frac_target": 0.1,
+    "test_frac_target": 0.1,
+    "seed": 42,
+    "target_molecule_counts": {
+      "train": 8129,
+      "val": 1016,
+      "test": 1016
+    },
+    "actual_molecule_counts": {
+      "train": 8128,
+      "val": 1015,
+      "test": 1018
+    },
+    "n_train": 8128,
+    "n_validation": 1015,
+    "n_test": 1018
+  },
+  "candidate_set": {
+    "source_file": "results/m65_improved_shortlist.csv",
+    "n_total": 64,
+    "n_candidate_like": 60,
+    "n_positive_controls": 4,
+    "identical_to_earlier_ranking_experiment": true,
+    "fair_comparison_file_matches": true,
+    "note": "The earlier M6.5 experiment used the same 64 molecules (60 candidate-like + 4 controls) but trained a different RF on a candidate-like internal split, so the ranks are not directly comparable model-to-model."
+  },
+  "known_inhibitors": [
+    {
+      "molecule_chembl_id": "CHEMBL1173655",
+      "name": "afatinib",
+      "canonical_smiles": "CN(C)C/C=C/C(=O)Nc1cc2c(Nc3ccc(F)c(Cl)c3)ncnc2cc1O[C@H]1CCOC1",
+      "is_known_inhibitor": true,
+      "exact_training_match": true,
+      "max_train_tanimoto": 1.0,
+      "applicability_bin": ">=0.8 (high / interpolation-like)",
+      "baseline_predicted_pIC50": 8.600629939064147,
+      "baseline_rank": 1,
+      "tuned_predicted_pIC50": 8.607087712272765,
+      "tuned_rank": 1,
+      "rank_change_tuned_minus_baseline": 0
+    },
+    {
+      "molecule_chembl_id": "CHEMBL554",
+      "name": "lapatinib",
+      "canonical_smiles": "CS(=O)(=O)CCNCc1ccc(-c2ccc3ncnc(Nc4ccc(OCc5cccc(F)c5)c(Cl)c4)c3c2)o1",
+      "is_known_inhibitor": true,
+      "exact_training_match": true,
+      "max_train_tanimoto": 1.0,
+      "applicability_bin": ">=0.8 (high / interpolation-like)",
+      "baseline_predicted_pIC50": 7.868315813806323,
+      "baseline_rank": 2,
+      "tuned_predicted_pIC50": 7.8828151957194015,
+      "tuned_rank": 2,
+      "rank_change_tuned_minus_baseline": 0
+    },
+    {
+      "molecule_chembl_id": "CHEMBL939",
+      "name": "gefitinib",
+      "canonical_smiles": "COc1cc2ncnc(Nc3ccc(F)c(Cl)c3)c2cc1OCCCN1CCOCC1",
+      "is_known_inhibitor": true,
+      "exact_training_match": true,
+      "max_train_tanimoto": 1.0,
+      "applicability_bin": ">=0.8 (high / interpolation-like)",
+      "baseline_predicted_pIC50": 7.681089705096349,
+      "baseline_rank": 3,
+      "tuned_predicted_pIC50": 7.666465824180179,
+      "tuned_rank": 3,
+      "rank_change_tuned_minus_baseline": 0
+    },
+    {
+      "molecule_chembl_id": "CHEMBL553",
+      "name": "erlotinib",
+      "canonical_smiles": "C#Cc1cccc(Nc2ncnc3cc(OCCOC)c(OCCOC)cc23)c1",
+      "is_known_inhibitor": true,
+      "exact_training_match": true,
+      "max_train_tanimoto": 1.0,
+      "applicability_bin": ">=0.8 (high / interpolation-like)",
+      "baseline_predicted_pIC50": 7.646334171295166,
+      "baseline_rank": 4,
+      "tuned_predicted_pIC50": 7.654910829861959,
+      "tuned_rank": 4,
+      "rank_change_tuned_minus_baseline": 0
+    }
+  ],
+  "top_counts": {
+    "top_5": {
+      "tuned": 4,
+      "baseline": 4
+    },
+    "top_10": {
+      "tuned": 4,
+      "baseline": 4
+    },
+    "top_20": {
+      "tuned": 4,
+      "baseline": 4
+    }
+  },
+  "top10_tuned": [
+    {
+      "tuned_rank": 1,
+      "name": "afatinib",
+      "molecule_chembl_id": "CHEMBL1173655",
+      "tuned_predicted_pIC50": 8.607087712272765,
+      "max_train_tanimoto": 1.0,
+      "exact_training_match": true,
+      "is_known_inhibitor": true
+    },
+    {
+      "tuned_rank": 2,
+      "name": "lapatinib",
+      "molecule_chembl_id": "CHEMBL554",
+      "tuned_predicted_pIC50": 7.8828151957194015,
+      "max_train_tanimoto": 1.0,
+      "exact_training_match": true,
+      "is_known_inhibitor": true
+    },
+    {
+      "tuned_rank": 3,
+      "name": "gefitinib",
+      "molecule_chembl_id": "CHEMBL939",
+      "tuned_predicted_pIC50": 7.666465824180179,
+      "max_train_tanimoto": 1.0,
+      "exact_training_match": true,
+      "is_known_inhibitor": true
+    },
+    {
+      "tuned_rank": 4,
+      "name": "erlotinib",
+      "molecule_chembl_id": "CHEMBL553",
+      "tuned_predicted_pIC50": 7.654910829861959,
+      "max_train_tanimoto": 1.0,
+      "exact_training_match": true,
+      "is_known_inhibitor": true
+    },
+    {
+      "tuned_rank": 5,
+      "name": null,
+      "molecule_chembl_id": "CHEMBL2316916",
+      "tuned_predicted_pIC50": 6.639241706000433,
+      "max_train_tanimoto": 0.30434782608695654,
+      "exact_training_match": false,
+      "is_known_inhibitor": false
+    },
+    {
+      "tuned_rank": 6,
+      "name": null,
+      "molecule_chembl_id": "CHEMBL5614250",
+      "tuned_predicted_pIC50": 6.1574010780122554,
+      "max_train_tanimoto": 0.43037974683544306,
+      "exact_training_match": false,
+      "is_known_inhibitor": false
+    },
+    {
+      "tuned_rank": 7,
+      "name": null,
+      "molecule_chembl_id": "CHEMBL5564149",
+      "tuned_predicted_pIC50": 6.119193044900894,
+      "max_train_tanimoto": 0.30952380952380953,
+      "exact_training_match": false,
+      "is_known_inhibitor": false
+    },
+    {
+      "tuned_rank": 8,
+      "name": null,
+      "molecule_chembl_id": "CHEMBL13983",
+      "tuned_predicted_pIC50": 5.932621772289276,
+      "max_train_tanimoto": 0.6388888888888888,
+      "exact_training_match": false,
+      "is_known_inhibitor": false
+    },
+    {
+      "tuned_rank": 9,
+      "name": null,
+      "molecule_chembl_id": "CHEMBL554993",
+      "tuned_predicted_pIC50": 5.914668312867483,
+      "max_train_tanimoto": 0.3088235294117647,
+      "exact_training_match": false,
+      "is_known_inhibitor": false
+    },
+    {
+      "tuned_rank": 10,
+      "name": null,
+      "molecule_chembl_id": "CHEMBL512054",
+      "tuned_predicted_pIC50": 5.9026687916119895,
+      "max_train_tanimoto": 0.3333333333333333,
+      "exact_training_match": false,
+      "is_known_inhibitor": false
+    }
+  ],
+  "earlier_claim": {
+    "source_file": "results/m65_improved_shortlist.csv",
+    "model": "M6.5 improved RandomForest (candidate-like internal split)",
+    "n_candidates": 64,
+    "n_controls": 4,
+    "earlier_control_ranks": [
+      {
+        "name": "afatinib",
+        "rank": 1,
+        "rf_pred": 8.38026021718979
+      },
+      {
+        "name": "erlotinib",
+        "rank": 2,
+        "rf_pred": 8.007646372318268
+      },
+      {
+        "name": "gefitinib",
+        "rank": 3,
+        "rf_pred": 7.767821056087812
+      },
+      {
+        "name": "lapatinib",
+        "rank": 4,
+        "rf_pred": 7.600286190765245
+      }
+    ]
+  },
+  "interpretation_note": "A high rank for an exact training molecule is not independent validation; distinguish 'known inhibitor ranked highly' from 'unseen known inhibitor ranked highly'.",
+  "versions": {
+    "python": "3.10.20",
+    "rdkit": "2026.03.5",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scipy": "1.15.2",
+    "scikit_learn": "1.7.2",
+    "xgboost": "3.2.0",
+    "matplotlib": "3.10.9"
+  }
+}

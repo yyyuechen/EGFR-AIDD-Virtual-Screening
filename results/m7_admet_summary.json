@@ -1,0 +1,22 @@
+{
+  "milestone": "M7 ADMET descriptors",
+  "n_molecules": 64,
+  "n_admet_ok": 52,
+  "n_lipinski_ok": 60,
+  "n_veber_ok": 54,
+  "lipinski_violation_counts": {
+    "0": 53,
+    "1": 7,
+    "2": 3,
+    "3": 1
+  },
+  "descriptor_means": {
+    "MW": 361.671625,
+    "cLogP": 2.8415937500000004,
+    "TPSA": 105.70375,
+    "HBD": 2.90625,
+    "HBA": 5.9375,
+    "QED": 0.47582812500000005,
+    "ESOL_logS": -3.95546875
+  }
+}

@@ -1,0 +1,322 @@
+{
+  "milestone": "Level 3 low-similarity withholding recovery",
+  "level": 3,
+  "sim_threshold": 0.6,
+  "frozen_model": {
+    "morgan": {
+      "radius": 2,
+      "nBits": 2048
+    },
+    "random_forest": {
+      "n_estimators": 300,
+      "random_state": 42,
+      "n_jobs": -1,
+      "min_samples_leaf": 1,
+      "max_features": 0.2,
+      "max_depth": null
+    }
+  },
+  "positive_set_reused": 4,
+  "ranking_pool_reused": 475,
+  "pool_prevalence": 0.008421052631578947,
+  "feasibility": {
+    "original_train_n": 8128,
+    "removed_n": 810,
+    "removed_fraction": 0.09965551181102363,
+    "final_train_n": 7318,
+    "sim_threshold": 0.6,
+    "removed_by_sim_union_n": 302,
+    "removed_by_scaffold_union_n": 645,
+    "distribution_before": {
+      "mean": 6.929749080368619,
+      "std": 1.3560348713371884,
+      "median": 7.040958404541016,
+      "active_fraction": 0.515132874015748
+    },
+    "distribution_after": {
+      "mean": 6.877924760627955,
+      "std": 1.3719597277875923,
+      "median": 6.983733892440796,
+      "active_fraction": 0.4969937141295436
+    },
+    "scaffold_diversity_before": {
+      "n_scaffolds": 2858,
+      "mean_molecules_per_scaffold": 2.8439468159552135,
+      "median_molecules_per_scaffold": 1.0,
+      "max_molecules_per_scaffold": 560,
+      "n_singleton_scaffolds": 1879
+    },
+    "scaffold_diversity_after": {
+      "n_scaffolds": 2785,
+      "mean_molecules_per_scaffold": 2.6276481149012567,
+      "median_molecules_per_scaffold": 1.0,
+      "max_molecules_per_scaffold": 125,
+      "n_singleton_scaffolds": 1845
+    }
+  },
+  "per_positive_feasibility": [
+    {
+      "compound": "afatinib (CHEMBL1173655)",
+      "n_train_total": 8128,
+      "n_sim_ge_0.60": 84,
+      "n_same_scaffold": 29,
+      "n_scaffold_with_sim_ge_0.60": 26,
+      "n_exact": 1
+    },
+    {
+      "compound": "erlotinib (CHEMBL553)",
+      "n_train_total": 8128,
+      "n_sim_ge_0.60": 40,
+      "n_same_scaffold": 560,
+      "n_scaffold_with_sim_ge_0.60": 23,
+      "n_exact": 1
+    },
+    {
+      "compound": "gefitinib (CHEMBL939)",
+      "n_train_total": 8128,
+      "n_sim_ge_0.60": 114,
+      "n_same_scaffold": 18,
+      "n_scaffold_with_sim_ge_0.60": 9,
+      "n_exact": 1
+    },
+    {
+      "compound": "lapatinib (CHEMBL554)",
+      "n_train_total": 8128,
+      "n_sim_ge_0.60": 65,
+      "n_same_scaffold": 38,
+      "n_scaffold_with_sim_ge_0.60": 38,
+      "n_exact": 1
+    }
+  ],
+  "training": {
+    "original_train_n": 8128,
+    "removed_n": 810,
+    "removed_fraction": 0.09965551181102363,
+    "final_train_n": 7318,
+    "exact_training_match_remaining": 0,
+    "same_scaffold_remaining": 0,
+    "all_positive_max_sim_lt_0.60": true
+  },
+  "closest_remaining_training_molecule": [
+    {
+      "canonical_smiles": "CN(C)C/C=C/C(=O)Nc1cc2c(Nc3ccc(F)c(Cl)c3)ncnc2cc1O[C@H]1CCOC1",
+      "max_train_tanimoto_level3": 0.5978260869565217,
+      "closest_remaining_smiles": "CCOc1cc2ncnc(Nc3ccc(F)c(Cl)c3)c2cc1NC(=O)/C=C/CN1C[C@@H]2OCCO[C@@H]2C1",
+      "closest_remaining_scaffold": "O=C(C=CCN1CC2OCCOC2C1)Nc1ccc2ncnc(Nc3ccccc3)c2c1",
+      "closest_remaining_pIC50": 8.200714111328125
+    },
+    {
+      "canonical_smiles": "C#Cc1cccc(Nc2ncnc3cc(OCCOC)c(OCCOC)cc23)c1",
+      "max_train_tanimoto_level3": 0.5972222222222222,
+      "closest_remaining_smiles": "C#Cc1cccc(Nc2ncnc3cc(OCCCN4C[C@H](O)[C@@H](O)[C@H](O)[C@H]4CO)c(OC)cc23)c1",
+      "closest_remaining_scaffold": "c1ccc(Nc2ncnc3cc(OCCCN4CCCCC4)ccc23)cc1",
+      "closest_remaining_pIC50": 8.312471389770508
+    },
+    {
+      "canonical_smiles": "COc1cc2ncnc(Nc3ccc(F)c(Cl)c3)c2cc1OCCCN1CCOCC1",
+      "max_train_tanimoto_level3": 0.5975609756097561,
+      "closest_remaining_smiles": "COc1cc2ncnc(Nc3cccc(NC(=O)C45CC6CC(CC(C6)C4)C5)c3)c2cc1OCCCN1CCOCC1",
+      "closest_remaining_scaffold": "O=C(Nc1cccc(Nc2ncnc3ccc(OCCCN4CCOCC4)cc23)c1)C12CC3CC(CC(C3)C1)C2",
+      "closest_remaining_pIC50": 7.652921199798584
+    },
+    {
+      "canonical_smiles": "CS(=O)(=O)CCNCc1ccc(-c2ccc3ncnc(Nc4ccc(OCc5cccc(F)c5)c(Cl)c4)c3c2)o1",
+      "max_train_tanimoto_level3": 0.5955056179775281,
+      "closest_remaining_smiles": "Fc1cccc(COc2ccc(Nc3ncnc4sc(-c5ccc(CNCc6ccccc6)o5)cc34)cc2Cl)c1",
+      "closest_remaining_scaffold": "c1ccc(CNCc2ccc(-c3cc4c(Nc5ccc(OCc6ccccc6)cc5)ncnc4s3)o2)cc1",
+      "closest_remaining_pIC50": 7.267606258392334
+    }
+  ],
+  "positive_similarity_bins_level3": {
+    "0.5-<0.6": 4,
+    "0.4-<0.5": 0,
+    "<0.4": 0
+  },
+  "positive_level_comparison": [
+    {
+      "compound": "afatinib",
+      "experimental_pIC50": 8.979303359985352,
+      "L1_pred": 8.292388264179229,
+      "L1_rank": 1,
+      "L1_percentile": 0.21052631578947367,
+      "L1_max_sim": 1.0,
+      "L2_pred": 8.396518202251858,
+      "L2_rank": 1,
+      "L2_percentile": 0.2105263157894736,
+      "L2_max_sim": 0.8048780487804879,
+      "L3_pred": 8.08712223686112,
+      "L3_rank": 3,
+      "L3_percentile": 0.631578947368421,
+      "L3_max_sim": 0.5978260869565217,
+      "L3_minus_L2_rank": 2,
+      "L3_minus_L1_rank": 2,
+      "L3_pred_minus_L2_pred": -0.3093959653907383,
+      "L3_pred_minus_L1_pred": -0.2052660273181086
+    },
+    {
+      "compound": "erlotinib",
+      "experimental_pIC50": 7.522878646850586,
+      "L1_pred": 7.975819192462497,
+      "L1_rank": 3,
+      "L1_percentile": 0.631578947368421,
+      "L1_max_sim": 0.9038461538461539,
+      "L2_pred": 7.778448141415914,
+      "L2_rank": 5,
+      "L2_percentile": 1.0526315789473684,
+      "L2_max_sim": 0.7121212121212122,
+      "L3_pred": 7.733960286140443,
+      "L3_rank": 10,
+      "L3_percentile": 2.1052631578947367,
+      "L3_max_sim": 0.5972222222222222,
+      "L3_minus_L2_rank": 5,
+      "L3_minus_L1_rank": 7,
+      "L3_pred_minus_L2_pred": -0.044487855275471055,
+      "L3_pred_minus_L1_pred": -0.24185890632205442
+    },
+    {
+      "compound": "gefitinib",
+      "experimental_pIC50": 7.638272285461426,
+      "L1_pred": 7.776028779612646,
+      "L1_rank": 7,
+      "L1_percentile": 1.4736842105263157,
+      "L1_max_sim": 0.9193548387096774,
+      "L2_pred": 7.684377680142722,
+      "L2_rank": 8,
+      "L2_percentile": 1.6842105263157894,
+      "L2_max_sim": 0.9193548387096774,
+      "L3_pred": 7.60964113940133,
+      "L3_rank": 15,
+      "L3_percentile": 3.1578947368421053,
+      "L3_max_sim": 0.5975609756097561,
+      "L3_minus_L2_rank": 7,
+      "L3_minus_L1_rank": 8,
+      "L3_pred_minus_L2_pred": -0.0747365407413918,
+      "L3_pred_minus_L1_pred": -0.16638764021131536
+    },
+    {
+      "compound": "lapatinib",
+      "experimental_pIC50": 7.966576099395752,
+      "L1_pred": 7.676742265939712,
+      "L1_rank": 13,
+      "L1_percentile": 2.736842105263158,
+      "L1_max_sim": 0.8734177215189873,
+      "L2_pred": 7.620801079008316,
+      "L2_rank": 13,
+      "L2_percentile": 2.736842105263158,
+      "L2_max_sim": 0.8395061728395061,
+      "L3_pred": 7.575628547668457,
+      "L3_rank": 19,
+      "L3_percentile": 4.0,
+      "L3_max_sim": 0.5955056179775281,
+      "L3_minus_L2_rank": 6,
+      "L3_minus_L1_rank": 6,
+      "L3_pred_minus_L2_pred": -0.045172531339858324,
+      "L3_pred_minus_L1_pred": -0.1011137182712547
+    }
+  ],
+  "level3_metrics": {
+    "n_pool": 475,
+    "n_positive": 4,
+    "prevalence": 0.008421052631578947,
+    "recovery": {
+      "top_1%": {
+        "top_k": 5,
+        "n_recovered": 1,
+        "recall": 0.25,
+        "enrichment_factor": 23.750000000000004,
+        "theoretical_max_enrichment_factor": 100.0
+      },
+      "top_5%": {
+        "top_k": 24,
+        "n_recovered": 4,
+        "recall": 1.0,
+        "enrichment_factor": 19.791666666666664,
+        "theoretical_max_enrichment_factor": 20.0
+      },
+      "top_10%": {
+        "top_k": 48,
+        "n_recovered": 4,
+        "recall": 1.0,
+        "enrichment_factor": 9.895833333333332,
+        "theoretical_max_enrichment_factor": 10.0
+      }
+    },
+    "roc_auc": 0.9803609341825903,
+    "pr_auc": 0.23596491228070177,
+    "spearman_pred_vs_experimental_pic50": 0.43288768798466537,
+    "mean_positive_rank": 11.75,
+    "median_positive_rank": 12.5
+  },
+  "level1_level2_level3_metrics": [
+    {
+      "metric": "recall_1%",
+      "level1": 0.5,
+      "level2": 0.5,
+      "level3": 0.25
+    },
+    {
+      "metric": "enrichment_factor_1%",
+      "level1": 47.50000000000001,
+      "level2": 47.50000000000001,
+      "level3": 23.750000000000004
+    },
+    {
+      "metric": "recall_5%",
+      "level1": 1.0,
+      "level2": 1.0,
+      "level3": 1.0
+    },
+    {
+      "metric": "enrichment_factor_5%",
+      "level1": 19.791666666666664,
+      "level2": 19.791666666666664,
+      "level3": 19.791666666666664
+    },
+    {
+      "metric": "recall_10%",
+      "level1": 1.0,
+      "level2": 1.0,
+      "level3": 1.0
+    },
+    {
+      "metric": "enrichment_factor_10%",
+      "level1": 9.895833333333332,
+      "level2": 9.895833333333332,
+      "level3": 9.895833333333332
+    },
+    {
+      "metric": "roc_auc",
+      "level1": 0.9925690021231421,
+      "level2": 0.9909766454352442,
+      "level3": 0.9803609341825903
+    },
+    {
+      "metric": "pr_auc",
+      "level1": 0.6007326007326007,
+      "level2": 0.520673076923077,
+      "level3": 0.23596491228070177
+    },
+    {
+      "metric": "median_positive_rank",
+      "level1": 5.0,
+      "level2": 6.5,
+      "level3": 12.5
+    },
+    {
+      "metric": "median_positive_max_train_tanimoto",
+      "level1": 0.9116004962779156,
+      "level2": 0.822192110809997,
+      "level3": 0.5973915989159891
+    }
+  ],
+  "versions": {
+    "python": "3.10.20",
+    "rdkit": "2026.03.5",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scipy": "1.15.2",
+    "scikit_learn": "1.7.2",
+    "xgboost": "3.2.0",
+    "matplotlib": "3.10.9"
+  }
+}

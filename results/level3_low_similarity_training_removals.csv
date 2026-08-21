@@ -1,0 +1,5 @@
+compound,n_train_total,n_sim_ge_0.60,n_same_scaffold,n_scaffold_with_sim_ge_0.60,n_exact,union_removed_after_joint_filtering,final_train_n
+afatinib (CHEMBL1173655),8128,84,29,26,1,810,7318
+erlotinib (CHEMBL553),8128,40,560,23,1,810,7318
+gefitinib (CHEMBL939),8128,114,18,9,1,810,7318
+lapatinib (CHEMBL554),8128,65,38,38,1,810,7318

@@ -1,0 +1,193 @@
+{
+  "milestone": "M7 AutoDock Vina docking",
+  "receptor_pdbqt": "data/docking/1m17_receptor.pdbqt",
+  "box": {
+    "receptor_pdbqt": "data/docking/1m17_receptor.pdbqt",
+    "receptor_pdb": "data/docking/1M17.pdb",
+    "pocket_ligand": "AQ4 (erlotinib, chain A residue 999)",
+    "center": [
+      22.014,
+      0.253,
+      52.794
+    ],
+    "size": [
+      24.0,
+      24.0,
+      24.0
+    ],
+    "note": "Box is centered on the co-crystallized erlotinib (AQ4) in EGFR 1M17."
+  },
+  "vina_version": "1.2.7",
+  "exhaustiveness": 8,
+  "cpu": 4,
+  "seed": 42,
+  "n_docked": 20,
+  "n_failed": 0,
+  "results": [
+    {
+      "molecule_chembl_id": "CHEMBL554993",
+      "name": null,
+      "source": "chembl_nonmodeled",
+      "affinity_kcal_mol": -9.936,
+      "note": "",
+      "affinity_rank": 1
+    },
+    {
+      "molecule_chembl_id": "CHEMBL490267",
+      "name": null,
+      "source": "chembl_nonmodeled",
+      "affinity_kcal_mol": -9.743,
+      "note": "",
+      "affinity_rank": 2
+    },
+    {
+      "molecule_chembl_id": "CHEMBL521470",
+      "name": null,
+      "source": "chembl_nonmodeled",
+      "affinity_kcal_mol": -9.518,
+      "note": "",
+      "affinity_rank": 3
+    },
+    {
+      "molecule_chembl_id": "CHEMBL13983",
+      "name": null,
+      "source": "chembl_nonmodeled",
+      "affinity_kcal_mol": -9.22,
+      "note": "",
+      "affinity_rank": 4
+    },
+    {
+      "molecule_chembl_id": "CHEMBL5564149",
+      "name": null,
+      "source": "chembl_nonmodeled",
+      "affinity_kcal_mol": -9.079,
+      "note": "",
+      "affinity_rank": 5
+    },
+    {
+      "molecule_chembl_id": "CHEMBL483525",
+      "name": null,
+      "source": "chembl_nonmodeled",
+      "affinity_kcal_mol": -8.841,
+      "note": "",
+      "affinity_rank": 6
+    },
+    {
+      "molecule_chembl_id": "CHEMBL554",
+      "name": "lapatinib",
+      "source": "positive_control",
+      "affinity_kcal_mol": -8.819,
+      "note": "",
+      "affinity_rank": 7
+    },
+    {
+      "molecule_chembl_id": "CHEMBL556684",
+      "name": null,
+      "source": "chembl_nonmodeled",
+      "affinity_kcal_mol": -8.657,
+      "note": "",
+      "affinity_rank": 8
+    },
+    {
+      "molecule_chembl_id": "CHEMBL243664",
+      "name": null,
+      "source": "chembl_nonmodeled",
+      "affinity_kcal_mol": -8.644,
+      "note": "",
+      "affinity_rank": 9
+    },
+    {
+      "molecule_chembl_id": "CHEMBL1173655",
+      "name": "afatinib",
+      "source": "positive_control",
+      "affinity_kcal_mol": -8.42,
+      "note": "",
+      "affinity_rank": 10
+    },
+    {
+      "molecule_chembl_id": "CHEMBL939",
+      "name": "gefitinib",
+      "source": "positive_control",
+      "affinity_kcal_mol": -8.188,
+      "note": "",
+      "affinity_rank": 11
+    },
+    {
+      "molecule_chembl_id": "CHEMBL490266",
+      "name": null,
+      "source": "chembl_nonmodeled",
+      "affinity_kcal_mol": -8.005,
+      "note": "",
+      "affinity_rank": 12
+    },
+    {
+      "molecule_chembl_id": "CHEMBL484121",
+      "name": null,
+      "source": "chembl_nonmodeled",
+      "affinity_kcal_mol": -7.884,
+      "note": "",
+      "affinity_rank": 13
+    },
+    {
+      "molecule_chembl_id": "CHEMBL2316916",
+      "name": null,
+      "source": "chembl_nonmodeled",
+      "affinity_kcal_mol": -7.735,
+      "note": "",
+      "affinity_rank": 14
+    },
+    {
+      "molecule_chembl_id": "CHEMBL484119",
+      "name": null,
+      "source": "chembl_nonmodeled",
+      "affinity_kcal_mol": -7.438,
+      "note": "",
+      "affinity_rank": 15
+    },
+    {
+      "molecule_chembl_id": "CHEMBL484316",
+      "name": null,
+      "source": "chembl_nonmodeled",
+      "affinity_kcal_mol": -7.091,
+      "note": "",
+      "affinity_rank": 16
+    },
+    {
+      "molecule_chembl_id": "CHEMBL553",
+      "name": "erlotinib",
+      "source": "positive_control",
+      "affinity_kcal_mol": -7.014,
+      "note": "",
+      "affinity_rank": 17
+    },
+    {
+      "molecule_chembl_id": "CHEMBL453504",
+      "name": null,
+      "source": "chembl_nonmodeled",
+      "affinity_kcal_mol": -6.519,
+      "note": "",
+      "affinity_rank": 18
+    },
+    {
+      "molecule_chembl_id": "CHEMBL485485",
+      "name": null,
+      "source": "chembl_nonmodeled",
+      "affinity_kcal_mol": -6.491,
+      "note": "",
+      "affinity_rank": 19
+    },
+    {
+      "molecule_chembl_id": "CHEMBL4539558",
+      "name": null,
+      "source": "chembl_nonmodeled",
+      "affinity_kcal_mol": -5.951,
+      "note": "",
+      "affinity_rank": 20
+    }
+  ],
+  "notes": [
+    "Rigid receptor docking; receptor PDBQT prepared with Open Babel.",
+    "Ligands prepared with RDKit 3D conformers + Meeko.",
+    "Affinity is the best Vina mode in kcal/mol (more negative = stronger)."
+  ]
+}

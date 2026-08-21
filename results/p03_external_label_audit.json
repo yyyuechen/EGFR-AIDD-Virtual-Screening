@@ -1,0 +1,45 @@
+{
+  "milestone": "P0-3a external label audit",
+  "n_records": 61,
+  "n_molecules": 59,
+  "unit_counts": {
+    "ug.mL-1": 54,
+    "/uM": 6,
+    "10^3 uM": 1
+  },
+  "relation_counts": {
+    "=": 61
+  },
+  "year_min": 1992,
+  "year_max": 2024,
+  "n_duplicate_molecules": 2,
+  "n_ambiguous_unit_records": 1,
+  "clean_label_rule": "median pIC50 across exact IC50 records with documented unit conversion; duplicate and ambiguous units are flagged, not silently dropped",
+  "sensitivity_max_vs_median": {
+    "n_molecules": 59,
+    "n_different_labels": 2,
+    "max_label_metrics": {
+      "n": 59,
+      "MAE": 0.9767343520772476,
+      "RMSE": 1.180257543762028,
+      "Pearson_r": 0.1575088993831104,
+      "Pearson_p": 0.23349000199420622,
+      "Spearman_rho": 0.2860065167826751,
+      "Spearman_p": 0.028095658607341947
+    },
+    "median_label_metrics": {
+      "n": 59,
+      "MAE": 0.9642218296107151,
+      "RMSE": 1.169316414280763,
+      "Pearson_r": 0.17321213412879943,
+      "Pearson_p": 0.1895394770971056,
+      "Spearman_rho": 0.29120822925711215,
+      "Spearman_p": 0.025240991798269746
+    }
+  },
+  "caveats": [
+    "All 61 records are exact (standard_relation = '=') and all are assay type B.",
+    "ug.mL-1 conversion uses RDKit molecular weight; 10^3 uM is treated literally as 1 mM and flagged.",
+    "The median aggregation matches the M1 molecule-level rule and avoids the optimistic 'most potent record wins' choice."
+  ]
+}

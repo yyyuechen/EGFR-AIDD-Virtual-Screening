@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Generated data files (keep the folder structure with .gitkeep)
+data/raw/*
+data/interim/*
+!data/**/.gitkeep
+
+# Large trained model artifacts (regenerate with scripts)
+results/models/
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# OS files
+.DS_Store
+
+# Local secrets / editor / tooling
+.env
+.env.*
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+.idea/
+.vscode/
+
+# Platform-specific AutoDock Vina binary (install separately)
+data/docking/vina

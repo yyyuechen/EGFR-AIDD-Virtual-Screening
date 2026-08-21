@@ -1,0 +1,5 @@
+compound,positive_Murcko_scaffold,training_molecules_removed_for_scaffold,overlap_with_other_removed_scaffolds,same_scaffold_remaining_after_removal,exact_match_remaining
+afatinib (CHEMBL1173655),c1ccc(Nc2ncnc3cc(OC4CCOC4)ccc23)cc1,29,0,0,0
+erlotinib (CHEMBL553),c1ccc(Nc2ncnc3ccccc23)cc1,560,0,0,0
+gefitinib (CHEMBL939),c1ccc(Nc2ncnc3ccc(OCCCN4CCOCC4)cc23)cc1,18,0,0,0
+lapatinib (CHEMBL554),c1ccc(COc2ccc(Nc3ncnc4ccc(-c5ccco5)cc34)cc2)cc1,38,0,0,0

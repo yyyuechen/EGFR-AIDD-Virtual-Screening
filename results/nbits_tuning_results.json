@@ -1,0 +1,355 @@
+{
+  "milestone": "nBits tuning study",
+  "validation_only": true,
+  "test_set_used": false,
+  "fingerprint": {
+    "type": "Morgan",
+    "radius": 2,
+    "nBits_list": [
+      512,
+      1024,
+      2048,
+      4096
+    ]
+  },
+  "split": {
+    "type": "standard_murcko_scaffold",
+    "train_frac_target": 0.8,
+    "val_frac_target": 0.1,
+    "test_frac_target": 0.1,
+    "seed": 42,
+    "target_molecule_counts": {
+      "train": 8129,
+      "val": 1016,
+      "test": 1016
+    },
+    "actual_molecule_counts": {
+      "train": 8128,
+      "val": 1015,
+      "test": 1018
+    },
+    "n_train": 8128,
+    "n_validation": 1015,
+    "n_test": 1018
+  },
+  "rf_params": {
+    "bootstrap": true,
+    "ccp_alpha": 0.0,
+    "criterion": "squared_error",
+    "max_depth": null,
+    "max_features": 1.0,
+    "max_leaf_nodes": null,
+    "max_samples": null,
+    "min_impurity_decrease": 0.0,
+    "min_samples_leaf": 1,
+    "min_samples_split": 2,
+    "min_weight_fraction_leaf": 0.0,
+    "monotonic_cst": null,
+    "n_estimators": 300,
+    "n_jobs": -1,
+    "oob_score": false,
+    "random_state": 42,
+    "verbose": 0,
+    "warm_start": false
+  },
+  "primary_metric": "validation Spearman",
+  "secondary_metrics": [
+    "validation RMSE",
+    "validation MAE",
+    "validation R2"
+  ],
+  "versions": {
+    "python": "3.10.20",
+    "rdkit": "2026.03.5",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scipy": "1.15.2",
+    "scikit_learn": "1.7.2",
+    "xgboost": "3.2.0",
+    "matplotlib": "3.10.9"
+  },
+  "results": [
+    {
+      "nBits": 512,
+      "MAE": 0.5890954736949335,
+      "RMSE": 0.7684284264602204,
+      "R2": 0.6060407156447136,
+      "Spearman": 0.7748297732032807,
+      "mean_on_bits": 59.910423278808594,
+      "median_on_bits": 62.0,
+      "mean_fingerprint_density": 0.11701254546642303,
+      "median_fingerprint_density": 0.12109375,
+      "n_molecules_evaluated": 9143,
+      "unique_fingerprints": 8778,
+      "duplicated_fingerprints": 365,
+      "collision_groups": 287,
+      "max_collision_group_size": 10,
+      "mean_max_train_tanimoto": 0.7361172486708831,
+      "median_max_train_tanimoto": 0.7611940298507462,
+      "min_max_train_tanimoto": 0.19767441860465115,
+      "max_max_train_tanimoto": 1.0
+    },
+    {
+      "nBits": 1024,
+      "MAE": 0.598023790821477,
+      "RMSE": 0.7812412862727249,
+      "R2": 0.5927933441669941,
+      "Spearman": 0.767840531122875,
+      "mean_on_bits": 61.61238098144531,
+      "median_on_bits": 63.0,
+      "mean_fingerprint_density": 0.06016834080219269,
+      "median_fingerprint_density": 0.0615234375,
+      "n_molecules_evaluated": 9143,
+      "unique_fingerprints": 8780,
+      "duplicated_fingerprints": 363,
+      "collision_groups": 286,
+      "max_collision_group_size": 10,
+      "mean_max_train_tanimoto": 0.7248823375678806,
+      "median_max_train_tanimoto": 0.75,
+      "min_max_train_tanimoto": 0.19736842105263158,
+      "max_max_train_tanimoto": 1.0
+    },
+    {
+      "nBits": 2048,
+      "MAE": 0.5946642853898787,
+      "RMSE": 0.7785210462517118,
+      "R2": 0.5956241504387505,
+      "Spearman": 0.7689442118822258,
+      "mean_on_bits": 62.4362907409668,
+      "median_on_bits": 64.0,
+      "mean_fingerprint_density": 0.030486470088362694,
+      "median_fingerprint_density": 0.03125,
+      "n_molecules_evaluated": 9143,
+      "unique_fingerprints": 8780,
+      "duplicated_fingerprints": 363,
+      "collision_groups": 286,
+      "max_collision_group_size": 10,
+      "mean_max_train_tanimoto": 0.7198310644854221,
+      "median_max_train_tanimoto": 0.75,
+      "min_max_train_tanimoto": 0.16455696202531644,
+      "max_max_train_tanimoto": 1.0
+    },
+    {
+      "nBits": 4096,
+      "MAE": 0.5884897314714592,
+      "RMSE": 0.7744295304282757,
+      "R2": 0.5998633744328281,
+      "Spearman": 0.7712086260078838,
+      "mean_on_bits": 62.987640380859375,
+      "median_on_bits": 65.0,
+      "mean_fingerprint_density": 0.015377841889858246,
+      "median_fingerprint_density": 0.015869140625,
+      "n_molecules_evaluated": 9143,
+      "unique_fingerprints": 8780,
+      "duplicated_fingerprints": 363,
+      "collision_groups": 286,
+      "max_collision_group_size": 10,
+      "mean_max_train_tanimoto": 0.716781312793947,
+      "median_max_train_tanimoto": 0.7441860465116279,
+      "min_max_train_tanimoto": 0.175,
+      "max_max_train_tanimoto": 1.0
+    }
+  ],
+  "detail": {
+    "512": {
+      "metrics": {
+        "MAE": 0.5890954736949335,
+        "RMSE": 0.7684284264602204,
+        "R2": 0.6060407156447136,
+        "Pearson_r": 0.7791736603336167,
+        "Spearman_rho": 0.7748297732032807
+      },
+      "spearman_validation": 0.7748297732032807,
+      "on_bits": {
+        "mean": 59.910423278808594,
+        "median": 62.0,
+        "mean_density": 0.11701254546642303,
+        "median_density": 0.12109375
+      },
+      "uniqueness": {
+        "n_molecules_evaluated": 9143,
+        "unique_fingerprints": 8778,
+        "duplicated_fingerprints": 365,
+        "collision_groups": 287,
+        "max_collision_group_size": 10,
+        "duplicate_canonical_smiles_in_dataset": "0"
+      },
+      "validation_max_train_tanimoto": {
+        "mean": 0.7361172486708831,
+        "median": 0.7611940298507462,
+        "min": 0.19767441860465115,
+        "max": 1.0
+      },
+      "rf_params": {
+        "bootstrap": true,
+        "ccp_alpha": 0.0,
+        "criterion": "squared_error",
+        "max_depth": null,
+        "max_features": 1.0,
+        "max_leaf_nodes": null,
+        "max_samples": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "n_estimators": 300,
+        "n_jobs": -1,
+        "oob_score": false,
+        "random_state": 42,
+        "verbose": 0,
+        "warm_start": false
+      }
+    },
+    "1024": {
+      "metrics": {
+        "MAE": 0.598023790821477,
+        "RMSE": 0.7812412862727249,
+        "R2": 0.5927933441669941,
+        "Pearson_r": 0.7700263719500156,
+        "Spearman_rho": 0.767840531122875
+      },
+      "spearman_validation": 0.767840531122875,
+      "on_bits": {
+        "mean": 61.61238098144531,
+        "median": 63.0,
+        "mean_density": 0.06016834080219269,
+        "median_density": 0.0615234375
+      },
+      "uniqueness": {
+        "n_molecules_evaluated": 9143,
+        "unique_fingerprints": 8780,
+        "duplicated_fingerprints": 363,
+        "collision_groups": 286,
+        "max_collision_group_size": 10,
+        "duplicate_canonical_smiles_in_dataset": "0"
+      },
+      "validation_max_train_tanimoto": {
+        "mean": 0.7248823375678806,
+        "median": 0.75,
+        "min": 0.19736842105263158,
+        "max": 1.0
+      },
+      "rf_params": {
+        "bootstrap": true,
+        "ccp_alpha": 0.0,
+        "criterion": "squared_error",
+        "max_depth": null,
+        "max_features": 1.0,
+        "max_leaf_nodes": null,
+        "max_samples": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "n_estimators": 300,
+        "n_jobs": -1,
+        "oob_score": false,
+        "random_state": 42,
+        "verbose": 0,
+        "warm_start": false
+      }
+    },
+    "2048": {
+      "metrics": {
+        "MAE": 0.5946642853898787,
+        "RMSE": 0.7785210462517118,
+        "R2": 0.5956241504387505,
+        "Pearson_r": 0.7718798977731479,
+        "Spearman_rho": 0.7689442118822258
+      },
+      "spearman_validation": 0.7689442118822258,
+      "on_bits": {
+        "mean": 62.4362907409668,
+        "median": 64.0,
+        "mean_density": 0.030486470088362694,
+        "median_density": 0.03125
+      },
+      "uniqueness": {
+        "n_molecules_evaluated": 9143,
+        "unique_fingerprints": 8780,
+        "duplicated_fingerprints": 363,
+        "collision_groups": 286,
+        "max_collision_group_size": 10,
+        "duplicate_canonical_smiles_in_dataset": "0"
+      },
+      "validation_max_train_tanimoto": {
+        "mean": 0.7198310644854221,
+        "median": 0.75,
+        "min": 0.16455696202531644,
+        "max": 1.0
+      },
+      "rf_params": {
+        "bootstrap": true,
+        "ccp_alpha": 0.0,
+        "criterion": "squared_error",
+        "max_depth": null,
+        "max_features": 1.0,
+        "max_leaf_nodes": null,
+        "max_samples": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "n_estimators": 300,
+        "n_jobs": -1,
+        "oob_score": false,
+        "random_state": 42,
+        "verbose": 0,
+        "warm_start": false
+      }
+    },
+    "4096": {
+      "metrics": {
+        "MAE": 0.5884897314714592,
+        "RMSE": 0.7744295304282757,
+        "R2": 0.5998633744328281,
+        "Pearson_r": 0.7747518305768643,
+        "Spearman_rho": 0.7712086260078838
+      },
+      "spearman_validation": 0.7712086260078838,
+      "on_bits": {
+        "mean": 62.987640380859375,
+        "median": 65.0,
+        "mean_density": 0.015377841889858246,
+        "median_density": 0.015869140625
+      },
+      "uniqueness": {
+        "n_molecules_evaluated": 9143,
+        "unique_fingerprints": 8780,
+        "duplicated_fingerprints": 363,
+        "collision_groups": 286,
+        "max_collision_group_size": 10,
+        "duplicate_canonical_smiles_in_dataset": "0"
+      },
+      "validation_max_train_tanimoto": {
+        "mean": 0.716781312793947,
+        "median": 0.7441860465116279,
+        "min": 0.175,
+        "max": 1.0
+      },
+      "rf_params": {
+        "bootstrap": true,
+        "ccp_alpha": 0.0,
+        "criterion": "squared_error",
+        "max_depth": null,
+        "max_features": 1.0,
+        "max_leaf_nodes": null,
+        "max_samples": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "monotonic_cst": null,
+        "n_estimators": 300,
+        "n_jobs": -1,
+        "oob_score": false,
+        "random_state": 42,
+        "verbose": 0,
+        "warm_start": false
+      }
+    }
+  }
+}

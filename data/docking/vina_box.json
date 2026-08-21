@@ -1,0 +1,8 @@
+{
+  "receptor_pdbqt": "data/docking/1m17_receptor.pdbqt",
+  "receptor_pdb": "data/docking/1M17.pdb",
+  "pocket_ligand": "AQ4 (erlotinib, chain A residue 999)",
+  "center": [22.014, 0.253, 52.794],
+  "size": [24.0, 24.0, 24.0],
+  "note": "Box is centered on the co-crystallized erlotinib (AQ4) in EGFR 1M17."
+}

@@ -1,0 +1,54 @@
+{
+  "tuning_complete": true,
+  "note": "Locked final Morgan-RF configuration. The standard scaffold test set was not used for model selection during the controlled hyperparameter study.",
+  "morgan": {
+    "type": "Morgan",
+    "radius": 2,
+    "nBits": 2048
+  },
+  "random_forest": {
+    "n_estimators": 300,
+    "random_state": 42,
+    "n_jobs": -1,
+    "min_samples_leaf": 1,
+    "max_features": 0.2,
+    "max_depth": null,
+    "baseline_max_features": 1.0
+  },
+  "split": {
+    "type": "standard_murcko_scaffold",
+    "train_frac_target": 0.8,
+    "val_frac_target": 0.1,
+    "test_frac_target": 0.1,
+    "seed": 42,
+    "target_molecule_counts": {
+      "train": 8129,
+      "val": 1016,
+      "test": 1016
+    },
+    "actual_molecule_counts": {
+      "train": 8128,
+      "val": 1015,
+      "test": 1018
+    },
+    "n_train": 8128,
+    "n_validation": 1015,
+    "n_test": 1018
+  },
+  "primary_selection_metric": "validation Spearman",
+  "secondary_selection_metrics": [
+    "validation R2",
+    "validation RMSE",
+    "validation MAE"
+  ],
+  "versions": {
+    "python": "3.10.20",
+    "rdkit": "2026.03.5",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scipy": "1.15.2",
+    "scikit_learn": "1.7.2",
+    "xgboost": "3.2.0",
+    "matplotlib": "3.10.9"
+  }
+}

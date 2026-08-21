@@ -1,0 +1,531 @@
+{
+  "milestone": "M6.5 RF + Transformer weighted ensemble",
+  "weight_selection": "candidate-like validation Spearman",
+  "selected_weight_rf": 0.85,
+  "selected_weight_transformer": 0.15,
+  "rf_only": {
+    "external_metrics": {
+      "n": 59,
+      "MAE": 1.0868940365418394,
+      "RMSE": 1.2434095842534538,
+      "Pearson_r": 0.15111795908113992,
+      "Pearson_p": 0.25324660422394124,
+      "Spearman_rho": 0.23277902836619357,
+      "Spearman_p": 0.07602776759494995
+    },
+    "control_ranks": {
+      "CHEMBL553": 2,
+      "CHEMBL1173655": 1,
+      "CHEMBL939": 3,
+      "CHEMBL554": 4
+    }
+  },
+  "transformer_only": {
+    "external_metrics": {
+      "n": 59,
+      "MAE": 0.9453423629372807,
+      "RMSE": 1.2494842586441999,
+      "Pearson_r": 0.1227359101530868,
+      "Pearson_p": 0.35439972879765425,
+      "Spearman_rho": 0.24418825526065524,
+      "Spearman_p": 0.06234442944194413
+    },
+    "control_ranks": {
+      "CHEMBL553": 7,
+      "CHEMBL1173655": 4,
+      "CHEMBL939": 6,
+      "CHEMBL554": 2
+    }
+  },
+  "equal_weight_0_5": {
+    "external_metrics": {
+      "n": 59,
+      "MAE": 0.9767343706483318,
+      "RMSE": 1.1802575577069316,
+      "Pearson_r": 0.15750888862383983,
+      "Pearson_p": 0.23349003433281276,
+      "Spearman_rho": 0.2860065167826751,
+      "Spearman_p": 0.028095658607341947
+    },
+    "control_ranks": {
+      "CHEMBL553": 3,
+      "CHEMBL1173655": 1,
+      "CHEMBL939": 4,
+      "CHEMBL554": 2
+    }
+  },
+  "selected_ensemble": {
+    "weight_rf": 0.85,
+    "weight_transformer": 0.15,
+    "validation_Spearman": 0.764676992872313,
+    "external_metrics": {
+      "n": 59,
+      "MAE": 1.0480027730300696,
+      "RMSE": 1.2109570529219387,
+      "Pearson_r": 0.166051242557995,
+      "Pearson_p": 0.20878221688928225,
+      "Spearman_rho": 0.2707228335010424,
+      "Spearman_p": 0.03809139090579064
+    },
+    "control_ranks": {
+      "CHEMBL553": 2,
+      "CHEMBL1173655": 1,
+      "CHEMBL939": 3,
+      "CHEMBL554": 4
+    },
+    "controls_in_top20": true
+  },
+  "transformer_selection": {
+    "best_epoch": 25,
+    "validation_Spearman": 0.5505285842080324,
+    "vocab_size": 48,
+    "max_len": 179
+  },
+  "sweep": [
+    {
+      "weight_rf": 0.0,
+      "weight_transformer": 1.0,
+      "validation_Spearman": 0.5505285842080324,
+      "external_metrics": {
+        "n": 59,
+        "MAE": 0.9453423629372807,
+        "RMSE": 1.2494842586441999,
+        "Pearson_r": 0.1227359101530868,
+        "Pearson_p": 0.35439972879765425,
+        "Spearman_rho": 0.24418825526065524,
+        "Spearman_p": 0.06234442944194413
+      },
+      "control_ranks": {
+        "CHEMBL553": 7,
+        "CHEMBL1173655": 4,
+        "CHEMBL939": 6,
+        "CHEMBL554": 2
+      },
+      "controls_in_top20": true
+    },
+    {
+      "weight_rf": 0.05,
+      "weight_transformer": 0.95,
+      "validation_Spearman": 0.5683891314433561,
+      "external_metrics": {
+        "n": 59,
+        "MAE": 0.9401456997820116,
+        "RMSE": 1.236904927232776,
+        "Pearson_r": 0.12560995439411052,
+        "Pearson_p": 0.3431567674941571,
+        "Spearman_rho": 0.24825026668732242,
+        "Spearman_p": 0.05798085535596686
+      },
+      "control_ranks": {
+        "CHEMBL553": 7,
+        "CHEMBL1173655": 3,
+        "CHEMBL939": 5,
+        "CHEMBL554": 1
+      },
+      "controls_in_top20": true
+    },
+    {
+      "weight_rf": 0.1,
+      "weight_transformer": 0.9,
+      "validation_Spearman": 0.5865460953609689,
+      "external_metrics": {
+        "n": 59,
+        "MAE": 0.9377942624688631,
+        "RMSE": 1.2255077765740359,
+        "Pearson_r": 0.12864726867773835,
+        "Pearson_p": 0.33151915337782295,
+        "Spearman_rho": 0.24334078525077502,
+        "Spearman_p": 0.06328733297841523
+      },
+      "control_ranks": {
+        "CHEMBL553": 5,
+        "CHEMBL1173655": 3,
+        "CHEMBL939": 4,
+        "CHEMBL554": 1
+      },
+      "controls_in_top20": true
+    },
+    {
+      "weight_rf": 0.15,
+      "weight_transformer": 0.85,
+      "validation_Spearman": 0.6045857155892648,
+      "external_metrics": {
+        "n": 59,
+        "MAE": 0.9398647325448781,
+        "RMSE": 1.215326066079304,
+        "Pearson_r": 0.13184984830883226,
+        "Pearson_p": 0.31952077342970725,
+        "Spearman_rho": 0.2569879747202253,
+        "Spearman_p": 0.049429984541103276
+      },
+      "control_ranks": {
+        "CHEMBL553": 4,
+        "CHEMBL1173655": 3,
+        "CHEMBL939": 5,
+        "CHEMBL554": 1
+      },
+      "controls_in_top20": true
+    },
+    {
+      "weight_rf": 0.2,
+      "weight_transformer": 0.8,
+      "validation_Spearman": 0.6226654874286973,
+      "external_metrics": {
+        "n": 59,
+        "MAE": 0.9428167343241636,
+        "RMSE": 1.2063905704032176,
+        "Pearson_r": 0.13521541214820199,
+        "Pearson_p": 0.3072137862263415,
+        "Spearman_rho": 0.25462090331331844,
+        "Spearman_p": 0.05163773645842199
+      },
+      "control_ranks": {
+        "CHEMBL553": 4,
+        "CHEMBL1173655": 2,
+        "CHEMBL939": 5,
+        "CHEMBL554": 1
+      },
+      "controls_in_top20": true
+    },
+    {
+      "weight_rf": 0.25,
+      "weight_transformer": 0.75,
+      "validation_Spearman": 0.6403068504204907,
+      "external_metrics": {
+        "n": 59,
+        "MAE": 0.9464667260824814,
+        "RMSE": 1.1987291582511235,
+        "Pearson_r": 0.1387354059642827,
+        "Pearson_p": 0.29467352683457443,
+        "Spearman_rho": 0.2685311007168695,
+        "Spearman_p": 0.039740884093716365
+      },
+      "control_ranks": {
+        "CHEMBL553": 3,
+        "CHEMBL1173655": 2,
+        "CHEMBL939": 4,
+        "CHEMBL554": 1
+      },
+      "controls_in_top20": true
+    },
+    {
+      "weight_rf": 0.3,
+      "weight_transformer": 0.7,
+      "validation_Spearman": 0.6575874094092029,
+      "external_metrics": {
+        "n": 59,
+        "MAE": 0.9508267046851049,
+        "RMSE": 1.1923663893043686,
+        "Pearson_r": 0.14239233602797252,
+        "Pearson_p": 0.2820041912184443,
+        "Spearman_rho": 0.2755738687300119,
+        "Spearman_p": 0.03464136923259544
+      },
+      "control_ranks": {
+        "CHEMBL553": 3,
+        "CHEMBL1173655": 2,
+        "CHEMBL939": 4,
+        "CHEMBL554": 1
+      },
+      "controls_in_top20": true
+    },
+    {
+      "weight_rf": 0.35,
+      "weight_transformer": 0.65,
+      "validation_Spearman": 0.6742295874369664,
+      "external_metrics": {
+        "n": 59,
+        "MAE": 0.9562725386757633,
+        "RMSE": 1.187323141719082,
+        "Pearson_r": 0.1461563032157573,
+        "Pearson_p": 0.26934516934088665,
+        "Spearman_rho": 0.28664942506603247,
+        "Spearman_p": 0.02772879115542095
+      },
+      "control_ranks": {
+        "CHEMBL553": 3,
+        "CHEMBL1173655": 1,
+        "CHEMBL939": 4,
+        "CHEMBL554": 2
+      },
+      "controls_in_top20": true
+    },
+    {
+      "weight_rf": 0.4,
+      "weight_transformer": 0.6,
+      "validation_Spearman": 0.689987683667724,
+      "external_metrics": {
+        "n": 59,
+        "MAE": 0.9622051560988437,
+        "RMSE": 1.1836162825841186,
+        "Pearson_r": 0.14998066213508074,
+        "Pearson_p": 0.2568777252771308,
+        "Spearman_rho": 0.2885781499161047,
+        "Spearman_p": 0.026652228710297928
+      },
+      "control_ranks": {
+        "CHEMBL553": 3,
+        "CHEMBL1173655": 1,
+        "CHEMBL939": 4,
+        "CHEMBL554": 2
+      },
+      "controls_in_top20": true
+    },
+    {
+      "weight_rf": 0.45,
+      "weight_transformer": 0.55,
+      "validation_Spearman": 0.7049221056910718,
+      "external_metrics": {
+        "n": 59,
+        "MAE": 0.9690733812962837,
+        "RMSE": 1.1812583929659368,
+        "Pearson_r": 0.1537968715732394,
+        "Pearson_p": 0.24483149725635045,
+        "Spearman_rho": 0.2974327503641634,
+        "Spearman_p": 0.022149946500871844
+      },
+      "control_ranks": {
+        "CHEMBL553": 3,
+        "CHEMBL1173655": 1,
+        "CHEMBL939": 4,
+        "CHEMBL554": 2
+      },
+      "controls_in_top20": true
+    },
+    {
+      "weight_rf": 0.5,
+      "weight_transformer": 0.5,
+      "validation_Spearman": 0.7184005441708544,
+      "external_metrics": {
+        "n": 59,
+        "MAE": 0.9767343706483318,
+        "RMSE": 1.1802575577069316,
+        "Pearson_r": 0.15750888862383983,
+        "Pearson_p": 0.23349003433281276,
+        "Spearman_rho": 0.2860065167826751,
+        "Spearman_p": 0.028095658607341947
+      },
+      "control_ranks": {
+        "CHEMBL553": 3,
+        "CHEMBL1173655": 1,
+        "CHEMBL939": 4,
+        "CHEMBL554": 2
+      },
+      "controls_in_top20": true
+    },
+    {
+      "weight_rf": 0.55,
+      "weight_transformer": 0.45,
+      "validation_Spearman": 0.7300951460313254,
+      "external_metrics": {
+        "n": 59,
+        "MAE": 0.9848862840856439,
+        "RMSE": 1.1806172280268645,
+        "Pearson_r": 0.1609879492527165,
+        "Pearson_p": 0.22319435270587604,
+        "Spearman_rho": 0.2860065167826751,
+        "Spearman_p": 0.028095658607341947
+      },
+      "control_ranks": {
+        "CHEMBL553": 3,
+        "CHEMBL1173655": 1,
+        "CHEMBL939": 4,
+        "CHEMBL554": 2
+      },
+      "controls_in_top20": true
+    },
+    {
+      "weight_rf": 0.6,
+      "weight_transformer": 0.4,
+      "validation_Spearman": 0.7403144600052224,
+      "external_metrics": {
+        "n": 59,
+        "MAE": 0.9941791152612348,
+        "RMSE": 1.182336162316364,
+        "Pearson_r": 0.16406929464862666,
+        "Pearson_p": 0.2143433560873098,
+        "Spearman_rho": 0.28477914642353824,
+        "Spearman_p": 0.02880735310990417
+      },
+      "control_ranks": {
+        "CHEMBL553": 2,
+        "CHEMBL1173655": 1,
+        "CHEMBL939": 4,
+        "CHEMBL554": 3
+      },
+      "controls_in_top20": true
+    },
+    {
+      "weight_rf": 0.65,
+      "weight_transformer": 0.35,
+      "validation_Spearman": 0.7489398945730774,
+      "external_metrics": {
+        "n": 59,
+        "MAE": 1.0038061121675446,
+        "RMSE": 1.1854084474752917,
+        "Pearson_r": 0.16655324093666327,
+        "Pearson_p": 0.20738996378556587,
+        "Spearman_rho": 0.2888119347464165,
+        "Spearman_p": 0.02652415671955995
+      },
+      "control_ranks": {
+        "CHEMBL553": 2,
+        "CHEMBL1173655": 1,
+        "CHEMBL939": 4,
+        "CHEMBL554": 3
+      },
+      "controls_in_top20": true
+    },
+    {
+      "weight_rf": 0.7,
+      "weight_transformer": 0.3,
+      "validation_Spearman": 0.755690702980513,
+      "external_metrics": {
+        "n": 59,
+        "MAE": 1.0139892567462165,
+        "RMSE": 1.1898235999458986,
+        "Pearson_r": 0.16821359191976934,
+        "Pearson_p": 0.20283185143952476,
+        "Spearman_rho": 0.29588392586334783,
+        "Spearman_p": 0.02288744820429814
+      },
+      "control_ranks": {
+        "CHEMBL553": 2,
+        "CHEMBL1173655": 1,
+        "CHEMBL939": 4,
+        "CHEMBL554": 3
+      },
+      "controls_in_top20": true
+    },
+    {
+      "weight_rf": 0.75,
+      "weight_transformer": 0.25,
+      "validation_Spearman": 0.7604029183661197,
+      "external_metrics": {
+        "n": 59,
+        "MAE": 1.0241724013248887,
+        "RMSE": 1.1955667424482406,
+        "Pearson_r": 0.16881607159654669,
+        "Pearson_p": 0.20119557893494516,
+        "Spearman_rho": 0.29798798933615384,
+        "Spearman_p": 0.021890504685763954
+      },
+      "control_ranks": {
+        "CHEMBL553": 2,
+        "CHEMBL1173655": 1,
+        "CHEMBL939": 4,
+        "CHEMBL554": 3
+      },
+      "controls_in_top20": true
+    },
+    {
+      "weight_rf": 0.8,
+      "weight_transformer": 0.2,
+      "validation_Spearman": 0.7637647626811142,
+      "external_metrics": {
+        "n": 59,
+        "MAE": 1.0354033615335518,
+        "RMSE": 1.202618849563743,
+        "Pearson_r": 0.16814736982825862,
+        "Pearson_p": 0.20301227764879393,
+        "Spearman_rho": 0.28664942506603247,
+        "Spearman_p": 0.02772879115542095
+      },
+      "control_ranks": {
+        "CHEMBL553": 2,
+        "CHEMBL1173655": 1,
+        "CHEMBL939": 3,
+        "CHEMBL554": 4
+      },
+      "controls_in_top20": true
+    },
+    {
+      "weight_rf": 0.85,
+      "weight_transformer": 0.15,
+      "validation_Spearman": 0.764676992872313,
+      "external_metrics": {
+        "n": 59,
+        "MAE": 1.0480027730300696,
+        "RMSE": 1.2109570529219387,
+        "Pearson_r": 0.166051242557995,
+        "Pearson_p": 0.20878221688928225,
+        "Spearman_rho": 0.2707228335010424,
+        "Spearman_p": 0.03809139090579064
+      },
+      "control_ranks": {
+        "CHEMBL553": 2,
+        "CHEMBL1173655": 1,
+        "CHEMBL939": 3,
+        "CHEMBL554": 4
+      },
+      "controls_in_top20": true
+    },
+    {
+      "weight_rf": 0.9,
+      "weight_transformer": 0.1,
+      "validation_Spearman": 0.7641496915226478,
+      "external_metrics": {
+        "n": 59,
+        "MAE": 1.060966527533993,
+        "RMSE": 1.220554994965158,
+        "Pearson_r": 0.1624630904121059,
+        "Pearson_p": 0.2189258445724174,
+        "Spearman_rho": 0.2611961016658373,
+        "Spearman_p": 0.045695655260667524
+      },
+      "control_ranks": {
+        "CHEMBL553": 2,
+        "CHEMBL1173655": 1,
+        "CHEMBL939": 3,
+        "CHEMBL554": 4
+      },
+      "controls_in_top20": true
+    },
+    {
+      "weight_rf": 0.95,
+      "weight_transformer": 0.05,
+      "validation_Spearman": 0.7617725838821456,
+      "external_metrics": {
+        "n": 59,
+        "MAE": 1.073930282037916,
+        "RMSE": 1.231383219174701,
+        "Pearson_r": 0.15743154787936187,
+        "Pearson_p": 0.2337225734507297,
+        "Spearman_rho": 0.24538640251600313,
+        "Spearman_p": 0.061030692727148596
+      },
+      "control_ranks": {
+        "CHEMBL553": 2,
+        "CHEMBL1173655": 1,
+        "CHEMBL939": 3,
+        "CHEMBL554": 4
+      },
+      "controls_in_top20": true
+    },
+    {
+      "weight_rf": 1.0,
+      "weight_transformer": 0.0,
+      "validation_Spearman": 0.7578928692842932,
+      "external_metrics": {
+        "n": 59,
+        "MAE": 1.0868940365418394,
+        "RMSE": 1.2434095842534538,
+        "Pearson_r": 0.15111795908113992,
+        "Pearson_p": 0.25324660422394124,
+        "Spearman_rho": 0.23277902836619357,
+        "Spearman_p": 0.07602776759494995
+      },
+      "control_ranks": {
+        "CHEMBL553": 2,
+        "CHEMBL1173655": 1,
+        "CHEMBL939": 3,
+        "CHEMBL554": 4
+      },
+      "controls_in_top20": true
+    }
+  ],
+  "caveats": [
+    "Weight is selected on candidate-like validation only; the external 59 molecules are a single final held-out check.",
+    "Transformer is retrained on the same split as M6.5 fair comparison and uses best-epoch selection."
+  ]
+}

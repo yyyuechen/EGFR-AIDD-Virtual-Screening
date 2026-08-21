@@ -1,0 +1,33 @@
+# Data and Third-Party Attribution
+
+## A. ChEMBL
+
+The EGFR activity data in this repository were derived from ChEMBL (EGFR /
+CHEMBL203, UniProt P00533). The processed dataset
+(`data/processed/egfr_activity_final.csv`) is a derived research/educational
+artifact, not a ChEMBL distribution itself. Users should consult the current
+ChEMBL licensing and terms before redistributing or reusing derived data.
+
+## B. Protein Data Bank
+
+Docking structures originate from the RCSB Protein Data Bank. PDB IDs used in
+this repository include 1M17 (EGFR with erlotinib), 4TKS, and 4WRG. Consult
+RCSB PDB usage and policy information before reuse.
+
+## C. AutoDock Vina
+
+AutoDock Vina is not redistributed in this repository. Install Vina 1.2.x
+separately and make the executable available on PATH, or pass the binary path
+via the relevant CLI argument (for example `--vina-bin`).
+
+## D. Derived data
+
+* `data/processed/` - final compact molecule-level dataset used by modeling.
+* `data/candidates/` - candidate-like screening molecules used for virtual
+  screening and candidate prioritization.
+* `data/docking/` - receptor/box files and ligand preparation inputs; the
+  Vina executable itself is excluded from publication.
+
+Raw and interim files are intentionally not part of the public repository;
+they can be regenerated with `src/data/download_chembl.py` and
+`src/data/preprocess_egfr.py`.

@@ -1,0 +1,19 @@
+name: egfr-aidd
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10.20
+  - pandas=2.3.3
+  - numpy=2.2.6
+  - scipy=1.15.2
+  - scikit-learn=1.7.2
+  - rdkit=2026.03.5
+  - matplotlib=3.10.9
+  - xgboost=3.2.0
+  - jupyter
+  - pip
+  - pip:
+      - requests
+      - chembl_webresource_client
+      - torch==2.13.0
+      - torch_geometric==2.8.0.post1

@@ -1,0 +1,67 @@
+{
+  "milestone": "M9 P0-1 retrospective screening benchmark",
+  "split": {
+    "type": "Murcko scaffold",
+    "n_train": 8128,
+    "n_test": 2033
+  },
+  "binary_definition": {
+    "active": "pIC50 >= 7.0",
+    "inactive": "pIC50 < 6.0",
+    "excluded": "6.0 <= pIC50 < 7.0"
+  },
+  "n_binary_test": 1454,
+  "metrics": {
+    "RandomForest": {
+      "n_active": 849,
+      "n_inactive": 605,
+      "ROC_AUC": 0.8851,
+      "PR_AUC": 0.918,
+      "EF1%": 1.713,
+      "EF5%": 1.713,
+      "Spearman_full_test": 0.6525
+    },
+    "XGBoost": {
+      "n_active": 849,
+      "n_inactive": 605,
+      "ROC_AUC": 0.8691,
+      "PR_AUC": 0.8976,
+      "EF1%": 1.713,
+      "EF5%": 1.713,
+      "Spearman_full_test": 0.6367
+    },
+    "Transformer": {
+      "n_active": 849,
+      "n_inactive": 605,
+      "ROC_AUC": 0.7927,
+      "PR_AUC": 0.832,
+      "EF1%": 1.713,
+      "EF5%": 1.594,
+      "Spearman_full_test": 0.4718
+    },
+    "RF_Transformer_ensemble": {
+      "n_active": 849,
+      "n_inactive": 605,
+      "ROC_AUC": 0.8725,
+      "PR_AUC": 0.9139,
+      "EF1%": 1.713,
+      "EF5%": 1.713,
+      "Spearman_full_test": 0.6261
+    },
+    "Random_chance": {
+      "n_active": 849,
+      "n_inactive": 605,
+      "ROC_AUC": 0.5,
+      "PR_AUC": 0.5839,
+      "EF1%": 1.0,
+      "EF5%": 1.0,
+      "Spearman_full_test": 0.0
+    }
+  },
+  "models": [
+    "RandomForest",
+    "XGBoost",
+    "Transformer",
+    "RF_Transformer_ensemble"
+  ]
+}
