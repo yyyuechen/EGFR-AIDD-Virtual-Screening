@@ -99,38 +99,3 @@ and 6/9 poses within 2 A of the crystal pose.
 * Vina scores and ADMET flags are screening approximations, not
   experimental measurements.
 * The standard scaffold split is one deterministic realisation.
-
-## Suggested CV description
-
-> Built an end-to-end AI-driven drug discovery pipeline for EGFR
-> inhibitors: curated 10,161 ChEMBL IC50 molecules, benchmarked Morgan
-> fingerprints, GNNs, and a SMILES Transformer, and showed that Morgan
-> fingerprints with Random Forest were the most robust representation.
-> Designed scaffold-aware and applicability-domain validation (standard
-> scaffold R2 0.573, Spearman 0.759; error increases with chemical novelty),
-> ran retrospective screening (ROC-AUC 0.885), multi-seed external
-> validation, ADMET filtering, and AutoDock Vina docking validated by
-> erlotinib redocking (RMSD 1.238 A).
-
-## 60-90 second interview explanation
-
-"I built a computational drug discovery pipeline for EGFR inhibitors,
-starting from 10,161 ChEMBL IC50 measurements. I curated the data into a
-clean molecule-level pIC50 dataset, then compared three molecular
-representations: Morgan fingerprints, graph neural networks, and a SMILES
-Transformer. The key scientific question was generalization to new
-chemistry, so I built two scaffold-aware benchmarks: a standard scaffold
-split, where the model must predict activity for unseen ring systems, and a
-hard out-of-distribution split where every test scaffold is unique. Morgan
-fingerprints with Random Forest were the strongest and most robust model,
-with R2 0.573 on the standard scaffold split and ROC-AUC 0.885 in a
-retrospective screening benchmark. I also added an applicability-domain
-analysis showing that predictions become less reliable as molecules become
-less similar to the training chemistry, which is useful for knowing when to
-trust the model. A five-seed audit showed that Random Forest was
-reproducibly positive externally, while a previously attractive ensemble was
-not. Finally, I filtered candidates with ADMET descriptors, docked them with
-AutoDock Vina, and validated the docking setup by redocking the erlotinib
-co-crystal to 1.24 Angstrom. The main takeaways are that scaffold-aware
-validation is essential, simpler representations can beat deep models in
-this regime, and honest uncertainty analysis matters for real screening."
