@@ -1,13 +1,13 @@
-# EGFR AI-Driven Drug Discovery Pipeline
+# EGFR AI-Driven Virtual Screening
 
-An end-to-end computational drug discovery project for EGFR inhibitors:
-ChEMBL data curation, molecular representation benchmarking, scaffold-aware
-validation, applicability-domain analysis, virtual screening, external
-robustness testing, ADMET filtering, and AutoDock Vina docking.
+End-to-end computational drug discovery for EGFR inhibitors: ChEMBL data
+curation, molecular representation benchmarking, scaffold-aware validation,
+applicability-domain analysis, virtual screening, external robustness
+testing, ADMET filtering, and AutoDock Vina docking.
 
-![workflow](results/figures/workflow.png)
+![Workflow](results/figures/workflow.png)
 
-![key results](results/figures/final_key_results.png)
+![Key results](results/figures/final_key_results.png)
 
 **Quick summary:** Morgan fingerprints + Random Forest are the strongest and
 most robust baseline in this project. Model performance drops as evaluation
@@ -16,296 +16,186 @@ molecules become less similar to the training chemistry. Ranking remains
 useful even in lower-similarity regions, but external transferability is
 substantially weaker than internal scaffold-aware performance.
 
----
+## Key Results
 
-## 1. Project Overview
+| Result | Value |
+|---|---:|
+| Curated EGFR IC50 dataset | 10,161 molecules (ChEMBL CHEMBL203) |
+| Standard scaffold split, baseline Morgan-RF | R2 0.573 / Spearman 0.759 |
+| Standard scaffold split, final tuned Morgan-RF | R2 0.592 / Spearman 0.766 |
+| Hard scaffold OOD stress test | R2 0.398 / Spearman 0.651 |
+| Retrospective screening | ROC-AUC 0.885, PR-AUC 0.918, EF1% 1.713 |
+| External set (59 records, 5 seeds) | RF Spearman +0.206 mean, 5/5 positive |
+| Erlotinib redocking | best RMSD 1.238 A, 6/9 poses < 2 A |
 
-This repository is an independent, portfolio-quality AIDD project that:
+## Final Candidate Result
 
-1. curates a molecule-level EGFR IC50 dataset from ChEMBL;
-2. benchmarks three molecular representations: Morgan fingerprints,
-   molecular graphs (GCN/GIN), and a SMILES Transformer;
-3. evaluates generalization with random, standard scaffold, and hard
-   scaffold OOD splits;
-4. analyzes chemical applicability domain via Morgan Tanimoto similarity;
-5. runs virtual screening, retrospective screening benchmarks, external
-   validation, and multi-seed robustness checks;
-6. filters candidates with ADMET descriptors and docks them with AutoDock
-   Vina;
-7. validates the docking setup by redocking the erlotinib co-crystal.
+The closing study prioritized 60 non-training candidates by convergent
+evidence from prediction, 25 frozen-model stability runs, applicability
+domain, physicochemical properties, and docking. Tier 1 is
+**CHEMBL13983**; Tier 2 is CHEMBL5564149, CHEMBL131921, CHEMBL2315700, and
+CHEMBL243664. These are hypotheses for experimental validation, not
+confirmed inhibitors.
 
-The full scientific write-up is in
-[docs/portfolio_hardening_analysis.md](docs/portfolio_hardening_analysis.md);
-the recruiter-facing summary is in
-[docs/FINAL_PROJECT_SUMMARY.md](docs/FINAL_PROJECT_SUMMARY.md).
+See [final_candidate_shortlist.csv](results/final_candidate_shortlist.csv),
+[final_candidate_evidence_matrix.csv](results/final_candidate_evidence_matrix.csv),
+and [final_candidate_prioritization_summary.json](results/final_candidate_prioritization_summary.json).
 
-## 2. Biological Target and Dataset
+## Dataset
 
 EGFR (Epidermal Growth Factor Receptor, UniProt P00533 / ChEMBL CHEMBL203)
-is a receptor tyrosine kinase frequently deregulated in cancer. Approved
-EGFR inhibitors include gefitinib, erlotinib, afatinib, and lapatinib.
+is a receptor tyrosine kinase frequently deregulated in cancer. The modeling
+dataset contains **10,161 curated molecules** with a continuous `pIC50`
+activity endpoint, downloaded from ChEMBL and restricted to exact EGFR IC50
+measurements. Units are normalized to nM, SMILES are validated and
+standardized with RDKit, and repeated measurements are aggregated by median.
 
-The modeling dataset contains **10,161 curated molecules** with a continuous
-`pIC50` activity endpoint, downloaded from ChEMBL and restricted to EGFR
-IC50 measurements.
+* Dataset: [egfr_activity_final.csv](data/processed/egfr_activity_final.csv)
+* Provenance: [data_processing_summary.json](results/data_processing_summary.json)
+* Attribution: [data/README.md](data/README.md)
 
-## 3. Data Curation
+## Methods
 
-The M1 pipeline keeps only exact IC50 measurements, normalizes all units to
-nM, validates and standardizes SMILES with RDKit (largest fragment +
-canonical SMILES), and aggregates repeated measurements by median pIC50.
-Every step is auditable in `results/data_processing_summary.json`.
-Data sources and third-party attribution are documented in
-[data/README.md](data/README.md).
+Three molecular representations were benchmarked under identical splits:
 
-## 4. Molecular Representation Benchmarking
+| Representation | Models |
+|---|---|
+| Morgan fingerprints (radius 2, 2048 bits) | RandomForest / XGBoost |
+| Molecular graphs | GCN / GIN |
+| SMILES token sequences | Transformer encoder |
 
-Three representations were compared under identical splits:
+The learned graph/sequence models did not consistently outperform the Morgan
+fingerprint baseline. The final Morgan-RF configuration was selected on a
+scaffold validation split (radius 2, 2048 bits, 300 trees,
+`max_features = 0.20`, seed 42) and then evaluated once on the untouched
+standard-scaffold test set.
 
-| Representation | Model | Course connection |
-|---|---|---|
-| Morgan fingerprint (radius=2, 2048 bits) | RandomForest / XGBoost | RDKit fingerprints |
-| Molecular graph | GCN / GIN | GNNs |
-| SMILES token sequence | Transformer encoder | NLP / Transformer |
+* Configuration: [final_rf_configuration.json](results/final_rf_configuration.json)
+* Test results: [final_rf_test_results.json](results/final_rf_test_results.json)
+* Protocol: [METHODS_AND_DECISIONS.md](docs/METHODS_AND_DECISIONS.md)
 
-Under this dataset and training regime, the learned graph/sequence models
-did **not** consistently outperform the simple Morgan fingerprint baseline.
-Multi-seed analysis (`results/p03_multiseed_reproducibility.json`)
-confirmed that RandomForest is the most stable model.
+## Generalization
 
-The Morgan-RF configuration was finalized through a controlled, one-factor
-hyperparameter study (validation-based selection, standard scaffold test
-untouched during selection):
-
-* Morgan radius 1-3 and nBits 512-4096 were broad performance plateaus;
-  radius 2 and 2048 bits were retained.
-* Increasing `min_samples_leaf` monotonically reduced validation
-  performance; `max_depth` showed a high-depth plateau above 60. Both
-  defaults were retained.
-* Moderate feature subsampling (`max_features=0.10-0.20`) was the only
-  change that robustly improved scaffold-held-out validation, confirmed
-  across five RF seeds.
-* The locked final configuration uses `max_features=0.20`; the original
-  default (`max_features=1.0`) is retained below as the explicit baseline.
-
-See [docs/final_rf_model_selection.md](docs/final_rf_model_selection.md),
-[results/final_rf_configuration.json](results/final_rf_configuration.json),
-and [results/final_rf_test_results.json](results/final_rf_test_results.json).
-
-## 5. Generalization Evaluation
-
-Three evaluation settings are used. **Standard scaffold split is the
-primary QSAR benchmark**; hard scaffold OOD is a stress test; random split
-is shown only as an optimistic comparison.
-
-| Split | Type | Morgan-RF model | R2 | Spearman |
-|---|---|---|---:|---:|
-| Random (80/20) | optimistic in-distribution | original default (mf=1.0) | 0.701 | 0.837 |
-| Standard scaffold (80/10/10, seed 42) | primary scaffold-aware | original default (mf=1.0) | 0.573 | 0.759 |
-| Standard scaffold (80/10/10, seed 42) | primary scaffold-aware | **final tuned (mf=0.20)** | **0.592** | **0.766** |
-| Hard scaffold OOD (80/20) | extreme unseen-scaffold stress test | original default (mf=1.0) | 0.398 | 0.651 |
-
-The final tuned model was locked before the standard scaffold test was
-evaluated. Its gain over the original default on that test set is small but
-reproducible: test RMSE 0.863 vs 0.883, R2 0.592 vs 0.573, Spearman 0.766
-vs 0.759 (paired bootstrap 95% CI excludes zero for RMSE, R2, and
-Spearman). Full numbers are in
-[results/final_rf_test_results.json](results/final_rf_test_results.json);
-per-molecule predictions are in
-[results/final_rf_test_predictions.csv](results/final_rf_test_predictions.csv).
-Across five alternative whole-Murcko-scaffold partitions (seeds 7/21/42/123/
-2024), the tuned model improved both Spearman and R2 in 5/5 splits (mean
-`ΔSpearman +0.006`, mean `ΔR2 +0.013`); the canonical seed-42 standard
-scaffold test numbers above remain the headline.
+| Split | Morgan-RF | R2 | Spearman |
+|---|---|---:|---:|
+| Random 80/20 | baseline | 0.701 | 0.837 |
+| Standard scaffold 80/10/10, seed 42 | baseline | 0.573 | 0.759 |
+| Standard scaffold 80/10/10, seed 42 | final tuned | 0.592 | 0.766 |
+| Hard scaffold OOD 80/20 | baseline | 0.398 | 0.651 |
 
 All splits are leakage-free at the scaffold level. The hard split is
-deliberately extreme: all 2,033 test scaffolds are singleton scaffolds.
-Retrospective screening remains strong even there (RandomForest ROC-AUC
-0.885, PR-AUC 0.918, EF1% 1.713).
+deliberately extreme: all 2,033 test scaffolds are singletons. Across five
+alternative whole-Murcko-scaffold partitions, the tuned model improved both
+Spearman and R2 in 5/5 splits
+([repeated_scaffold_split_summary.json](results/repeated_scaffold_split_summary.json)).
 
-## 6. Applicability Domain
+![Split comparison](results/figures/portfolio_split_comparison.png)
+
+## Applicability Domain
 
 For every standard-scaffold test molecule, `max_train_tanimoto` is the
 maximum Morgan Tanimoto similarity to any training molecule.
 
 * `Spearman(max_train_tanimoto, absolute_error) = -0.232 (p < 1e-10)`
-* MAE increases monotonically from **0.507** in the `>=0.8` similarity bin
-  to **1.068** in the `<0.4` bin.
+* MAE increases monotonically from **0.507** (similarity >= 0.8) to
+  **1.068** (similarity < 0.4)
 * Ranking remains useful even at lower similarity: ROC-AUC 0.944 for
-  similarity >=0.6 vs 0.858 for similarity <0.6.
+  similarity >= 0.6 vs 0.858 for similarity < 0.6
 
-## 7. Virtual Screening
+![Applicability domain](results/figures/portfolio_applicability_scatter.png)
 
-The pipeline screens the ChEMBL-derived candidate library with
-Morgan-based and learned models, then re-ranks with the more defensible
-RandomForest model (multi-seed RF is recommended over the seed-sensitive
-RF+Transformer ensemble). Positive controls rank highly, which is a
-necessary but not sufficient sanity check; the retrospective screening
-benchmark is the primary evidence of ranking quality.
+## Virtual Screening and External Robustness
 
-## 8. External Robustness
+The pipeline screens a ChEMBL-derived candidate library
+([egfr_candidate_library.csv](data/candidates/egfr_candidate_library.csv))
+with Morgan-based and learned models, then re-ranks with the more defensible
+RandomForest model. The four known positive controls (afatinib, erlotinib,
+gefitinib, lapatinib) rank 1-4 under the locked model and are recovered 4/4
+in the top 5, top 10, and top 20
+([final_known_inhibitor_summary.json](results/final_known_inhibitor_summary.json)).
+This is a necessary but not sufficient sanity check; the retrospective
+screening benchmark
+([m9_retrospective_benchmark.json](results/m9_retrospective_benchmark.json))
+is the primary evidence of ranking quality.
 
-External labels are 59 heterogeneous ChEMBL IC50 records; this is a
-transferability stress test, not a gold standard. Across five seeds:
+External labels are 59 heterogeneous ChEMBL IC50 records, a transferability
+stress test rather than a gold standard. Across five seeds, RandomForest
+external Spearman is positive in 5/5 seeds (mean +0.206), while the
+RF + Transformer ensemble is positive in only 3/5 seeds (mean +0.024):
+[p03_multiseed_reproducibility.json](results/p03_multiseed_reproducibility.json).
 
-* RandomForest external Spearman mean **+0.206**, positive in **5/5** seeds.
-* Equal-weight RF+Transformer ensemble mean +0.024, positive in 3/5 seeds.
-* Single-seed ensemble gains were **not reproducible** across seeds.
-
-External performance is substantially weaker than internal scaffold-aware
-performance, which is documented rather than hidden.
-
-## 9. Physicochemical Filtering and Docking
+## Docking
 
 ADMET descriptors (Lipinski, Veber, ESOL, QED) filter the shortlist, and
-AutoDock Vina docks 20/20 shortlist molecules against EGFR 1M17. The docking
-setup is validated by redocking the erlotinib co-crystal:
+AutoDock Vina docks 20/20 shortlist molecules against EGFR 1M17
+(rigid receptor, box centered on co-crystallized erlotinib). The setup is
+validated by redocking erlotinib: best RMSD **1.238 A**, with 6/9 Vina poses
+below 2 A ([m9_pose_validation.json](results/m9_pose_validation.json)).
 
-* best redocking RMSD = **1.238 Angstrom**;
-* **6/9** Vina poses have RMSD < 2 Angstrom.
+![Candidate evidence](results/figures/final_candidate_potential_vs_confidence.png)
 
-### Final Candidate Prioritization
+![Docking pose validation](results/figures/m9_pose_validation.png)
 
-The closing candidate study considered only **non-training** candidates (60
-eligible molecules after excluding known controls) and prioritized them by
-convergent evidence from prediction, 25 frozen-model stability runs,
-applicability domain, physicochemical properties, and docking. Tier 1 is
-CHEMBL13983; Tier 2 is CHEMBL5564149, CHEMBL131921, CHEMBL2315700, and
-CHEMBL243664. These candidates are hypotheses for experimental validation,
-not confirmed EGFR inhibitors. Full rationale:
-[docs/final_candidate_prioritization.md](docs/final_candidate_prioritization.md).
-
-## 10. Key Findings
-
-* Random splitting is optimistic relative to scaffold-aware evaluation.
-* Morgan-RF is the strongest and most robust baseline in this project.
-* More complex learned representations did not consistently outperform
-  Morgan fingerprints under the current dataset/training regime.
-* Quantitative prediction reliability decreases with chemical novelty.
-* Ranking ability remains useful even in lower-similarity regions.
-* External transferability is substantially weaker than internal
-  scaffold-aware performance.
-* Single-seed ensemble gains were not reproducible; multi-seed analysis
-  favored RandomForest.
-* RF ensemble diversity mattered more than direct tree simplification:
-  radius/nBits changes and leaf/depth regularization produced plateaus or
-  worse validation performance, while `max_features=0.10-0.20` consistently
-  improved scaffold generalization across five RF seeds and transferred
-  partially to the held-out scaffold test.
-* Docking geometry was validated through erlotinib co-crystal redocking.
-
-## 11. Limitations
-
-* All results are retrospective; no prospective or wet-lab validation.
-* Morgan Tanimoto is representation-dependent; similar structures can still
-  show activity cliffs.
-* Assay heterogeneity affects activity labels.
-* Vina scores are screening approximations, not true binding affinities.
-* ADMET descriptors are rule-based, not experimental measurements.
-* The standard scaffold split is one deterministic realisation.
-* Hyperparameter decisions were made sequentially on one fixed scaffold-
-  validation partition, so repeated adaptive use of that validation split
-  may introduce some model-selection bias. The final locked model was
-  therefore evaluated without further adjustment on the scaffold test set;
-  the standard scaffold test set was not used during the controlled
-  hyperparameter-selection study.
-
-## 12. Reproducibility / How to Run
+## Reproducibility
 
 ```bash
-# Main modeling environment
 conda env create -f environment.yml
 conda activate egfr-aidd
 
-# Docking environment (rdkit + meeko + openbabel)
-conda env create -f environment-docking.yml
-conda activate egfr-aidd-dock
-```
-
-### Quick Start
-
-From the project root, with the `egfr-aidd` environment active, two
-representative commands reproduce the final locked RF test evaluation and
-the final candidate shortlist:
-
-```bash
 python src/models/final_rf_confirmation.py
-python src/models/final_candidate_prioritization.py
+python src/models/final_candidate_prioritization.py   # 25 frozen-model fits
 ```
 
-The second command runs 25 frozen-model stability fits and takes several
-minutes. Docking requires the separate `egfr-aidd-dock` environment and a
-separately installed AutoDock Vina 1.2.x executable on PATH (or passed via
-the docking scripts' CLI argument); Vina is not redistributed in this
-repository.
+Docking requires the separate `egfr-aidd-dock` environment and an
+AutoDock Vina 1.2.x executable installed separately. Fixed seeds: split 42,
+model 42, multi-seed audit {42, 7, 123, 2024, 777}. Full commands, package
+versions, and regeneration notes are in
+[REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md).
 
-From the project root, with the `egfr-aidd` environment active:
+## Limitations
 
-```bash
-python src/data/download_chembl.py          # needs internet (ChEMBL)
-python src/data/preprocess_egfr.py
-python src/models/morgan_baseline.py
-python src/models/evaluate_splits.py
-KMP_DUPLICATE_LIB_OK=TRUE python src/models/graph_baseline.py
-KMP_DUPLICATE_LIB_OK=TRUE python src/models/smiles_transformer.py
-KMP_DUPLICATE_LIB_OK=TRUE python src/models/virtual_screening.py
-python src/models/p03_external_label_audit.py
-python src/models/portfolio_hardening_analysis.py
-python src/models/final_portfolio_figures.py
-python src/models/final_rf_confirmation.py   # locked final Morgan-RF test evaluation
-```
+All results are retrospective; no prospective or wet-lab validation was
+performed. External transferability is substantially weaker than internal
+scaffold-aware performance, Vina scores and ADMET descriptors are
+approximations, and final candidates remain hypotheses. See
+[LIMITATIONS.md](docs/LIMITATIONS.md) for the full list.
 
-Docking scripts run with `conda activate egfr-aidd-dock`:
-
-```bash
-python src/models/m7_docking.py --top-n 20
-python src/models/m9_docking_pose_validation.py
-```
-
-Fixed seeds: split seed 42, model random_state 42, multi-seed audit uses
-{42, 7, 123, 2024, 777}. Results JSONs record package versions, indices, and
-parameters. The controlled M2 tuning scripts are
-`src/models/radius_tuning_study.py`,
-`src/models/nbits_tuning_study.py`,
-`src/models/min_samples_leaf_tuning_study.py`,
-`src/models/max_features_tuning_study.py`,
-`src/models/max_features_low_range_study.py`,
-`src/models/max_features_multiseed_study.py`, and
-`src/models/max_depth_tuning_study.py`; their results are in `results/` and
-`docs/`.
-
-## 13. Repository Structure
+## Repository Structure
 
 ```text
-egfr-aidd-project/
+.
 ├── README.md
-├── environment.yml
-├── environment-docking.yml
+├── environment.yml              # modeling environment
+├── environment-docking.yml      # docking environment
 ├── data/
-│   ├── raw/          # downloaded ChEMBL files
-│   ├── interim/      # auditable preprocessing stages
-│   ├── processed/    # final molecule-level dataset
-│   ├── candidates/   # virtual-screening candidate library
-│   └── docking/      # receptor, box (Vina installed separately)
+│   ├── processed/               # final curated molecule-level dataset
+│   ├── candidates/              # virtual-screening candidate library
+│   └── docking/                 # receptor, prepared receptor, docking box
 ├── notebooks/
 │   ├── 01_egfr_dataset_qc.ipynb
-│   ├── 02_morgan_baseline.ipynb
 │   ├── 03_morgan_split_comparison.ipynb
-│   ├── 04_molecular_graph_baseline.ipynb
-│   ├── 05_smiles_transformer.ipynb
 │   └── 06_virtual_screening.ipynb
 ├── src/
-│   ├── data/          # download + preprocessing
-│   ├── models/        # all milestone + portfolio scripts
-│   └── utils/         # shared helpers
+│   ├── data/                    # download + preprocessing
+│   ├── models/                  # core pipeline and final evaluation scripts
+│   └── utils/                   # shared helpers
 ├── results/
-│   ├── figures/       # milestone + final figures
-│   ├── *.json         # auditable metrics and split definitions
-│   └── models/        # trained model artifacts (git-ignored)
+│   ├── figures/                 # selected final figures
+│   └── *.json / *.csv           # compact final summaries and evidence tables
 └── docs/
-    ├── FINAL_PROJECT_SUMMARY.md
-    ├── portfolio_hardening_analysis.md
-    ├── final_rf_model_selection.md
-    ├── archive/         # development history / roadmap
-    └── README_M*.md   # milestone reports
+    ├── PROJECT_SUMMARY.md
+    ├── METHODS_AND_DECISIONS.md
+    ├── REPRODUCIBILITY.md
+    └── LIMITATIONS.md
 ```
+
+## Documentation
+
+* [PROJECT_SUMMARY.md](docs/PROJECT_SUMMARY.md)
+* [METHODS_AND_DECISIONS.md](docs/METHODS_AND_DECISIONS.md)
+* [REPRODUCIBILITY.md](docs/REPRODUCIBILITY.md)
+* [LIMITATIONS.md](docs/LIMITATIONS.md)
+
+Representative notebooks: [dataset QC](notebooks/01_egfr_dataset_qc.ipynb),
+[scaffold split comparison](notebooks/03_morgan_split_comparison.ipynb), and
+[virtual screening](notebooks/06_virtual_screening.ipynb).
